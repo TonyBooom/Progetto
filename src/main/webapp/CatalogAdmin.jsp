@@ -58,10 +58,9 @@
 					</a>	
 				<a href="Catalogo?action=view&id=<%=var.getCodprodotto()%>">
 							<%=var.getNome()%>
-					</a> <%= String.format("%.02f", var.getPrezzo()) %> &euro;
-				<a href="Modify?action=mod&id=<%= var.getCodprodotto()%>">    <input type="button" value="Modifica"> </a>
-						
-				<p>	<%= var.getRimosso()%></p>
+					</a>
+				<a href="Modify?action=mod&id=<%= var.getCodprodotto()%>">   <br> <input class ="pulsante" type="button" value="Modifica"> </a>
+				
 			</div>
 					
 		

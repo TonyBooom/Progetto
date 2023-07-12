@@ -20,7 +20,7 @@ h1{
      width: 700px;
      background-color: white;
      padding: 0 2% 2% 2%;
-     border: 5px solid #ffc1c1;
+     border: 5px solid gray;
      margin: 6% auto;
      display: -webkit-box;
      display: flex;
@@ -34,18 +34,18 @@ h1{
 
 .Modifica{
 	text-decoration: none;
-	border: 1px solid #ffc1c1;
+	border: 1px solid gray;
 	border-radius: 2em;
 	font-size: 1em;
 	color: black;
-	background-color: #ffc1c1;
+	background-color: gray;
 	font-weight: normal;
 	text-align:center;
 	width: 40%;
 	padding: 10px;
     margin: 2px;
     justify-content:space-around;
-    width:50%%;
+    width:50%;
 }
 
 a:hover{
@@ -55,17 +55,16 @@ a:hover{
 
 .Modifica:hover {
 	color:black;
-	font-color:white;
-	background-color:lightblue;
+	background-color:lightgray;
 	transition:0.3s;
 	cursor: pointer;
-	border: lightblue;
+	border: black;
 }
 
 .box{
 	border-radius:20px;
 	padding: 15px;
-	border: 2px solid #ffc1c1;
+	border: 2px solid gray;
 	text-align:right;
 }
 

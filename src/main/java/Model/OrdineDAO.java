@@ -33,7 +33,15 @@ public class OrdineDAO {
 			ResultSet id = query.executeQuery();
 			
 			id.next();
-			int CID = id.getInt("id_ordine") + 1;
+			int CID;
+			
+			System.out.println(id);
+			
+			
+			if(id.equals("NULL"))
+				CID = id.getInt(0);
+			else
+				CID = id.getInt("id_ordine") + 1;
 			
 			preparedStatement = connection.prepareStatement(insertSQL);
 			preparedStatement.setInt(1, CID);
@@ -45,8 +53,9 @@ public class OrdineDAO {
 			preparedStatement.setDouble(7, user.getPrezzo_totale());
 	
 			preparedStatement.executeUpdate();
+			connection.commit(); //Salva le modifiche sul database
 			return CID;
-				//connection.commit(); //Salva le modifiche sul database
+				
 		} 
 		finally 
 		{
@@ -176,7 +185,7 @@ public class OrdineDAO {
 			preparedStatement.setDouble(6, var.getPrezzo_totale());
 			
 			preparedStatement.executeUpdate();
-			//connection.commit();
+			connection.commit();
 
 		} 
 		finally 

@@ -6,11 +6,11 @@
 
 .Modifica{
 	text-decoration: none;
-	border: 1px solid lightgray;
+	border: 1px solid #ffc1c1;
 	border-radius: 2em;
 	font-size: 1em;
 	color: black;
-	background-color: lightgray;
+	background-color: #ffc1c1;
 	font-weight: normal;
 	text-align:center;
 	width: 100%;
@@ -34,11 +34,11 @@ a:hover{
 
 .save{
 	text-decoration: none;
-	border: 1px solid lightgray;
+	border: 1px solid #ffc1c1;
 	border-radius: 2em;
 	font-size: 1em;
 	color: black;
-	background-color: lightgray;
+	background-color: #ffc1c1;
 	font-weight: normal;
 	text-align:center;
 	width: 50%;
@@ -49,7 +49,7 @@ a:hover{
 
 .save:hover{
 	color:black;
-	background-color: gray;
+	background-color:gray;
 	transition:0.3s;
 	cursor: pointer;
 	border: gray;
@@ -57,7 +57,7 @@ a:hover{
 
 .campi{
 	border-radius:20px;
-	border: 1px solid gray;
+	border: 1px solid grey;
 	text-align:center;
 	margin:2px;
 }
@@ -116,11 +116,11 @@ div#prova {
 
 .Modifica2{
 	text-decoration: none;
-	border: 1px solid rgb(128, 128, 128);
+	border: 1px solid gray;
 	border-radius: 2em;
 	font-size: 1em;
 	color: black;
-	background-color: rgb(128, 128, 128);
+	background-color: gray;
 	font-weight: normal;
 	text-align:center;
 	width: 100%;
@@ -132,11 +132,10 @@ div#prova {
 
 .Modifica2:hover {
 	color:black;
-	font-color:white;
 	background-color: #59e5b6;
 	transition:0.3s;
 	cursor: pointer;
-	border: lightblue;
+	border: gray;
 }
 
 .ciclo {
@@ -174,7 +173,6 @@ td, th {
   
 }
 
-
 .tabella{
 	display:flex;
  	justify-content:center; 
@@ -195,11 +193,11 @@ td, th {
 
 .fattura{
 	text-decoration: none;
-	border: 1px solid rgb(192, 192, 192);
+	border: 1px solid #ffc1c1;
 	border-radius: 2em;
 	font-size: 0.7em;
 	color: black;
-	background-color: rgb(192, 192, 192);
+	background-color: #ffc1c1;
 	font-weight: bold;
 	text-align:center;
 	width: 100%;
@@ -210,12 +208,21 @@ td, th {
 
 .fattura:hover {
 	color:black;
-	font-color:white;
 	transition:0.3s;
 	cursor: pointer;
 	    transform: scale(1.1);
     transition: .3s;
 } 
+
+.error_box{
+	display:flex;
+	flex-direction:column;
+	justify-content:center;
+	align-items:center;
+	font-weight:bold;
+	font-size:1.6em;
+	
+}
 
 
 

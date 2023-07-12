@@ -69,7 +69,7 @@
 		                <li class="list-group-item d-flex justify-content-between">
 		                    <span>Totale (Sped. Escl.) </span><%= String.format("%.02f",Prezzo_finale) %> &euro;
 		                </li>
-		                <li class="list-group-item d-flex justify-content-between" style="background-color:#e3f7fa">
+		                <li class="list-group-item d-flex justify-content-between" class = "totale">
 		                    <span>Totale (EUR)</span>
 		                    <strong><%= String.format("%.02f",Prezzo_finale+5) %> &euro;</strong>
 		                </li>
@@ -95,7 +95,9 @@
 											<p><strong>Anno Scadenza:</strong> <%=  pbean.getAnnoScadenza() %></p>
 											<p><strong>Codice Carta:</strong> <%=  pbean.getCodice_carta() %></p>
 										</div>
-								<%}}%>
+								<%}}
+								
+								else System.out.println("Aggiungere inserimento dati pagamento e indirizzo fatturazione");%>
 						</div>
 									
 									
@@ -120,21 +122,14 @@
 						</div>
 						<%}%> 
 						
-		<div class="jammja">
+		<div class="completo">
 			<% if (u.getConsegna().isEmpty() || u.getPagamento().isEmpty()){ %>
 					<input type="submit" value="Completa ordine" class="acquista" disabled>
 	
 				<% } else { %>
 					<input type="submit" value="Completa ordine" class="acquista">
 					
-				<% } %>
-		 
-		 
-		 
-		 
-		 
-<!-- 		 			<input type="submit" value="Completa ordine" class="acquista"> -->
-			
+				<% } %>	
 		</div> 			
 			</form>
 		</div>

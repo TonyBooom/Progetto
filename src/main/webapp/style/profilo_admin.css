@@ -12,11 +12,11 @@
 
 .admin_button{
 	text-decoration: none;
-	border: 1px solid #ffc1c1;
+	border: 1px solid ;
 	border-radius: 2em;
 	font-size: 1em;
 	color: black;
-	background-color: #ffc1c1;
+	background-color: gray;
 	font-weight: normal;
 	text-align:center;
 	width: 100%;
@@ -27,11 +27,10 @@
 
 .admin_button:hover {
 	color:black;
-	font-color:white;
-	background-color:lightblue;
+	background-color:lightgray;
 	transition:0.3s;
 	cursor: pointer;
-	border: lightblue;
+	border: lightgray;
 	
 }
 
@@ -55,9 +54,6 @@ td, th {
   
 }
 
-tr:nth-child(even) {
-  background-color: lightblue;
-}
 
 
 .datiPersonali{
@@ -68,11 +64,11 @@ tr:nth-child(even) {
 
 .Modifica{
 	text-decoration: none;
-	border: 1px solid #ffc1c1;
+	border: 1px solid gray;
 	border-radius: 2em;
 	font-size: 1em;
 	color: black;
-	background-color: #ffc1c1;
+	background-color: gray;
 	font-weight: normal;
 	text-align:center;
 	width: 100%;
@@ -88,20 +84,19 @@ a:hover{
 
 .Modifica:hover {
 	color:black;
-	font-color:white;
-	background-color:lightblue;
+	background-color:lightgray;
 	transition:0.3s;
 	cursor: pointer;
-	border: lightblue;
+	border: lightgray;
 }
 
 .save{
 	text-decoration: none;
-	border: 1px solid #ffc1c1;
+	border: 1px solid black;
 	border-radius: 2em;
 	font-size: 1em;
 	color: black;
-	background-color: #ffc1c1;
+	background-color: gray;
 	font-weight: normal;
 	text-align:center;
 	width: 50%;
@@ -112,11 +107,10 @@ a:hover{
 
 .save:hover{
 	color:black;
-	font-color:white;
-	background-color:lightblue;
+	background-color:lightgray;
 	transition:0.3s;
 	cursor: pointer;
-	border: lightblue;
+	border: lightgray;
 }
 
 .campi{
@@ -176,11 +170,11 @@ div#prova {
 
 .Modifica2{
 	text-decoration: none;
-	border: 1px solid lightblue;
+	border: 1px solid lightgray;
 	border-radius: 2em;
 	font-size: 1em;
 	color: black;
-	background-color: lightblue;
+	background-color: lightgray;
 	font-weight: normal;
 	text-align:center;
 	width: 100%;
@@ -192,11 +186,10 @@ div#prova {
 
 .Modifica2:hover {
 	color:black;
-	font-color:white;
-	background-color: #59e5b6;
+	background-color: gray;
 	transition:0.3s;
 	cursor: pointer;
-	border: lightblue;
+	border: lightgray;
 }
 
 .ciclo {
@@ -209,7 +202,7 @@ div#prova {
 
 .dunno {
     display: grid;
-    border: 1px solid #ffc1c1;
+    border: 1px solid gray;
     border-radius: 18px;
     justify-content: center;
     max-width: 30%; 

@@ -82,13 +82,13 @@
 		            		<span class="material-symbols-outlined"> vpn_key </span>
 		 					<div class="areaNick">
 			                    <p><strong>Password</strong></p>
-			                    <p>*********</p>
+			                    <p><%= obj.getPassword() %> </p>
 		                	</div>
 		            </div>
 		        </div> 
 				
 				<form action ="Reindirizzamento" method="get">
-					<input type="submit" class="Modifica" value="Modifica dati">
+					<input type="submit" class="button" value="Modifica dati">
 				</form>		
 				
 		
@@ -173,30 +173,24 @@
 					<th>ID ordine </th>
 					<th>Data ordine </th>
 					<th>Stato ordine</th>
-					<th>Nome/Cognome utente </th>
+					<th>Nome utente </th>
 					<th>Metodo di pagamento </th>
 					<th>Totale</th>
-					<th>Ordine</th>
-					<th>Fattura</th>
-					
+					<th>Ordine</th>					
 				</tr>
 			<%for(OrdineBean bean : arr){ %>
 				<tr> <!-- CONTENUTO TABELLA -->
 					<td> <%= bean.getIdOrdine() %></td>
 					<td> <%= bean.getData_ordine() %></td>
 					<td> <%= bean.getStato_ordine() %></td>
-					<td> <%= bean.getCodUtente().getEmail() %></td>
+					<td> <%= bean.getCodUtente().getNome()  %></td>
 					<td> <%= bean.getCodPagamento().getCodice_carta() %></td>
 					<td> <%= String.format("%.02f", bean.getPrezzo_totale()) %> &euro; </td>
 					<td>
-						<form action="Fattura" method="post">
+						<form action="Invoice" method="post">
 							<input type="hidden" name="ordine" value="<%= bean.getIdOrdine()%>">
-							<input type="submit" value="Fattura" class="fattura">
+							<input type="submit" value="Invoice">
 						</form>
-					</td>
-					<td> <% for(ProdottoBean pbean : bean.getComposizione().keySet()){%>
-						<img class ="images" src="<%= pbean.getImmagine().getPath() %>">	
-						<%}%>
 					</td>
 					
 				</tr>

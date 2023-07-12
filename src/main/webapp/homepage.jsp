@@ -20,18 +20,17 @@
 
 	<body>
 		<jsp:include page="header.jsp"/>
-			
 
-		<div class="video-container">
-    		<video autoplay loop muted>
-    		  <source src="video1.mp4" type="video/mp4">
-    		</video>
-  		</div>
-
- 		 <div class="content">
-  			  <h1>Sito TSW</h1>
-   		 </div>
-
+	<div class="containerh">
+		  
+ 
+    		<video class="video" src="video1.mp4" autoplay loop muted></video>
+    		
+    		<div class="text-overlay">
+      			<h1>Sito TSW</h1>
+    		</div>
+  	</div>
+		
 	   <footer>
 		<jsp:include page="footer.jsp"/>
 	   </footer>

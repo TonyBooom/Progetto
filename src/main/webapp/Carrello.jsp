@@ -95,6 +95,10 @@
 					
 
 					
+					<div class="avanti">
+						<a href="Acquisto.jsp"><input class="procedi" type="button" value="Procedi all'acquisto"> </a>
+					</div>			
+			 
 					<%}
 					else {%>
 						
@@ -105,11 +109,6 @@
 				</div>
 			</div>
 
-
-			<div class="avanti">
-				<a href="Acquisto.jsp"><input class="procedi" type="button" value="Procedi all'acquisto"> </a>
-			</div>			
-			 
 	
 				
 				

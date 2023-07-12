@@ -15,7 +15,7 @@ public class ConsegnaDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String ID = "SELECT id_consegna FROM squishy_muffins.consegna ORDER BY id_consegna DESC LIMIT 1";
+		String ID = "SELECT id_consegna FROM tsw.consegna ORDER BY id_consegna DESC LIMIT 1";
 		
 		String insertSQL = "INSERT INTO " + ConsegnaDAO.TABLE_NAME
 				+ " (id_consegna, via, cap, numero, citta, utente)"

@@ -22,7 +22,7 @@
 	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <link rel="stylesheet" href="style/catalog.css">
-	    <link rel="shortcut icon" type="image/png" href="logo.png">
+	    <link rel="shortcut icon" type="image/png" href="logo.jpg">
 	    
 	    <link href="https://fonts.google.com/specimen/Ubuntu?sort=popularity&noto.lang=en_Latn" rel="stylesheet" type="text/css">
 		<link rel="stylesheet" href="./style/font.css">
@@ -49,8 +49,6 @@
 					}
 			%>
 	
-			<!--  POPUP DA INTEGRARE CON LO SCRIPT SOTTO: 
-			<jps:include page="PopupAcquisto.html" /> -->
 			
 			<div class="prodotto">
 			
