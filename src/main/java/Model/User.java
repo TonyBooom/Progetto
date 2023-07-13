@@ -58,11 +58,11 @@ public class User {
 		this.admin = admin;
 	}
 	
-	public String getCodice_fiscale() {
+	public String getCodiceFiscale() {
 		return Codice_fiscale;
 	}
-	public void setCodice_fiscale(String codice_fiscale) {
-		Codice_fiscale = codice_fiscale;
+	public void setCodiceFiscale(String codiceFiscale) {
+		Codice_fiscale = codiceFiscale;
 	}
 	String Codice_fiscale;
 

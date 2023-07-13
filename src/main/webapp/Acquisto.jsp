@@ -79,7 +79,9 @@
 		                <form action="Salvataggio_ordine" method="post"> 
 		                <input type="hidden" value="<%= Prezzo_finale%>" name="pf">
 						<div class="metodi">
-							
+						
+								
+							<!-- Inserisci controllo che ridirige all'inserimento dei dati  -->
 							<span class="text-muted">Seleziona il tuo metodo di pagamento</span>
 								<% 
 									if (u.getPagamento() != null){

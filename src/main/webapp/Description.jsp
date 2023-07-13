@@ -59,20 +59,18 @@
 				<p class="descrizione"><%= var.getDescrizione()%></p>
 				<p>Seleziona pacchetto</p>
 				<input type="radio" id="base" name="fav_language" value="Base" checked="checked">
-				<label>Base</label><br>
+				<label for="base">Base</label><br>
 				<input type="radio" id="silver" name="fav_language" value="Silver">
-				<label>Silver</label><br>
+				<label for="silver">Silver</label><br>
 				<input type="radio" id="gold" name="fav_language" value="Gold">
-				<label>Gold</label>
-
+				<label for="gold">Gold</label>
+		
 
 			
 				<p class = "product-title-price">&euro; <%= String.format("%.02f", var.getPrezzo()) %> <span>iva inc.</span></p>
 				<p class="container-bottone">
 					<button class="aggiungi">
-					
-						<%= %>
-						<a href="Cart?action=add&id=<%=var.getCodprodotto()%> %>&qnt=1&provenienza=catalogo">Aggiungi al carrello</a>
+						<a href="Cart?action=add&id=<%=var.getCodprodotto()%>&qnt=1&provenienza=catalogo">Aggiungi al carrello</a>
 					</button>
 				</p>
 			</div>

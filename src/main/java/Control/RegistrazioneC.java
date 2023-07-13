@@ -43,7 +43,7 @@ public class RegistrazioneC extends HttpServlet {
 		bean.setPassword(request.getParameter("password"));
 		bean.setNome(request.getParameter("nome"));
 		bean.setCognome(request.getParameter("cognome"));
-		bean.setCodice_fiscale(request.getParameter("codicefiscale"));
+		bean.setCodiceFiscale(request.getParameter("codicefiscale"));
 		
 		
 		try {

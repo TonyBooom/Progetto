@@ -43,7 +43,7 @@ public class Mod_utente extends HttpServlet {
 				obj.setPassword(request.getParameter("Password"));
 				obj.setNome(request.getParameter("Nome"));
 				obj.setCognome(request.getParameter("Cognome"));
-				obj.setCodice_fiscale(request.getParameter("CodiceFiscale"));
+				obj.setCodiceFiscale(request.getParameter("CodiceFiscale"));
 				udao.doUpdate(obj, request.getParameter("Email_vecchia"));
 				request.getSession().setAttribute("Utente loggato", obj);
 				response.sendRedirect("./Profilo_utente.jsp");

@@ -1,6 +1,6 @@
 package Model;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,18 +29,9 @@ public class PagamentoDAO {
 			PreparedStatement query = connection.prepareStatement(ID);
 			
 			ResultSet id = query.executeQuery();
-			
+						
 			id.next();
-			
-			int CID;
-			
-			if(id.equals("NULL"))
-				CID = id.getInt(0);
-			else
-				CID = id.getInt("id_ordine") + 1;
-			
-			
-			
+			int CID = id.getInt("id_pagamento") + 1;
 			
 			
 			preparedStatement = connection.prepareStatement(insertSQL);

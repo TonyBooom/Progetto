@@ -42,7 +42,10 @@ public class Salva_carta_pagamento extends HttpServlet {
 			bean.setAnnoScadenza(Integer.parseInt(request.getParameter("month").substring(0, 4)));
 			
 			try {
+				
+				
 				User ut = (User) request.getSession().getAttribute("Utente loggato");
+				System.out.println(ut.getEmail().toString());
 				pdao.doSave(bean, ut);
 				
 				UserDao udao = new UserDao();

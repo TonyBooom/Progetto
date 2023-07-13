@@ -95,6 +95,27 @@ a:not(.cons) {
 	font-size: 3rem;
 }
 
+/* Stilizzazione dei radio button */
+input[type="radio"] {
+  display: none; /* Nasconde l'input radio predefinito */
+}
+
+/* Stilizzazione delle label dei radio button */
+input[type="radio"] + label {
+  display: inline-block;
+  margin-right: 10px;
+  padding: 5px 10px;
+  background-color: #f1f1f1;
+  color: #333;
+  cursor: pointer;
+}
+
+/* Stilizzazione delle label selezionate */
+input[type="radio"]:checked + label {
+  background-color: #333;
+  color: #fff;
+}
+
 @media all and (min-width : 700px) and (max-width : 1000px) {
 	
 	.item-descrizione {

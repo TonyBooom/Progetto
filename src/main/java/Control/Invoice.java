@@ -42,7 +42,7 @@ public class Invoice extends HttpServlet {
         PDDocument document = new PDDocument();
         PDPage page = new PDPage(PDRectangle.A4);
         document.addPage(page);
-        PDType0Font font = PDType0Font.load(document, new File("Helvetica.ttf"));
+        PDType0Font font = PDType0Font.load(document, new File("C:\\Users\\39351\\git\\Progetto\\TSW_2023\\Helvetica.ttf"));
 
         // Caricamento del logo
         PDImageXObject logoImage = PDImageXObject.createFromFile("C:\\Users\\39351\\git\\Progetto\\TSW_2023\\logo.jpg", document);

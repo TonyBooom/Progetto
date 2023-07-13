@@ -88,7 +88,7 @@
 		        </div> 
 				
 				<form action ="Reindirizzamento" method="get">
-					<input type="submit" class="button" value="Modifica dati">
+					<input type="submit" class="Modifica2" value="Modifica dati">
 				</form>		
 				
 		
@@ -109,7 +109,7 @@
 					<input class="campi" type="text" placeholder="CVV" id="cod_cvv" name="cod_cvv" maxlength="3"  >
 					<input class="campi" type="month" placeholder="Mese scadenza" id="month" name="month" >
 					<br>
-					<button type="submit" id="pay" class="save">Salva nuovo metodo di pagamento</button>
+					<button type="submit" id="pay" class="Modifica2">Salva nuovo metodo di pagamento</button>
 				</form>
 			</div>
 
@@ -121,7 +121,7 @@
 					<input class="campi" type="text" placeholder="CAP" id="cap" name="cap" maxlength="5" >
 					<input class="campi" type="text" placeholder="Citta" id="provincia" name="citta" >
 					<br>
-					<button type="submit" id="address" class="save">Salva nuovo indirizzo di spedizione</button>
+					<button type="submit" id="address" class="Modifica2">Salva nuovo indirizzo di spedizione</button>
 				</form>
 			</div>	    
 		</div>
@@ -133,6 +133,7 @@
 				<p class="error_message_prov" style="display:none;"></p>
 			</div>
 
+		<% 	if(obj.getPagamento() != null && !obj.getPagamento().isEmpty()){ %>
 		<div class="ciclo">
 			<p>I tuoi dati di pagamento</p>
 		</div>
@@ -148,8 +149,11 @@
 					<p><strong>CVV:</strong> ***</p>
 				</div>
 				
-			<% } %>
+			<% }} %>
+			
 
+		<% 	if(obj.getPagamento() != null && !obj.getPagamento().isEmpty()){ %>
+		
 		<div class="ciclo">
 			<p>I tuoi dati di consegna</p>
 		</div>
@@ -164,8 +168,10 @@
 					<p><strong>Città</strong> <%=pbean.getCitta() %></p>
 				</div>
 				
-			<% } %>
+			<% }} %>
 			
+			
+			<% 	if(arr != null && !arr.isEmpty()){ %>
 			
 			<div class="tabella"> 
 			<table class="tab">
@@ -198,6 +204,7 @@
 				<%} %>
 			</table>
  		</div> 
+ 		<%} %>
 			
 	
 		<br><br>

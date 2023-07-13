@@ -6,11 +6,11 @@
 
 .Modifica{
 	text-decoration: none;
-	border: 1px solid #ffc1c1;
+	border: 1px solid gray;
 	border-radius: 2em;
 	font-size: 1em;
 	color: black;
-	background-color: #ffc1c1;
+	background-color: gray;
 	font-weight: normal;
 	text-align:center;
 	width: 100%;
@@ -34,11 +34,11 @@ a:hover{
 
 .save{
 	text-decoration: none;
-	border: 1px solid #ffc1c1;
+	border: 1px solid gray;
 	border-radius: 2em;
 	font-size: 1em;
 	color: black;
-	background-color: #ffc1c1;
+	background-color: gray;
 	font-weight: normal;
 	text-align:center;
 	width: 50%;
@@ -112,6 +112,7 @@ div#prova {
 	align-items: center;
 	padding:20px;
 	max-width:100%;
+	width: min-content;
 }
 
 .Modifica2{
@@ -132,7 +133,7 @@ div#prova {
 
 .Modifica2:hover {
 	color:black;
-	background-color: #59e5b6;
+	background-color: lightgray;
 	transition:0.3s;
 	cursor: pointer;
 	border: gray;
@@ -148,7 +149,7 @@ div#prova {
 
 .dunno {
     display: grid;
-    border: 1px solid #ffc1c1;
+    border: 1px solid gray;
     border-radius: 18px;
     justify-content: center;
     max-width: 30%; 
@@ -193,11 +194,11 @@ td, th {
 
 .fattura{
 	text-decoration: none;
-	border: 1px solid #ffc1c1;
+	border: 1px solid gray;
 	border-radius: 2em;
 	font-size: 0.7em;
 	color: black;
-	background-color: #ffc1c1;
+	background-color: gray;
 	font-weight: bold;
 	text-align:center;
 	width: 100%;
@@ -210,7 +211,7 @@ td, th {
 	color:black;
 	transition:0.3s;
 	cursor: pointer;
-	    transform: scale(1.1);
+	transform: scale(1.1);
     transition: .3s;
 } 
 

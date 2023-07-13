@@ -29,7 +29,7 @@ public class UserDao
 			preparedStatement.setString(2, user.getPassword());
 			preparedStatement.setString(3, user.getNome());
 			preparedStatement.setString(4, user.getCognome());
-			preparedStatement.setString(5, user.getCodice_fiscale());
+			preparedStatement.setString(5, user.getCodiceFiscale());
 			
 			preparedStatement.executeUpdate();
 
@@ -67,7 +67,7 @@ public synchronized void doUpdate (User var, String vecchia_mail) throws SQLExce
 			preparedStatement.setString(2, var.getPassword());
 			preparedStatement.setString(3, var.getNome());
 			preparedStatement.setString(4, var.getCognome());
-			preparedStatement.setString(5, var.getCodice_fiscale());
+			preparedStatement.setString(5, var.getCodiceFiscale());
 			preparedStatement.setString(6, vecchia_mail);		// per sapere quale mail cambiare tenendo come riferimento quella vecchia durante la modifica
 			
 			preparedStatement.executeUpdate();
@@ -146,7 +146,7 @@ public synchronized void doUpdate (User var, String vecchia_mail) throws SQLExce
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
 				bean.setAdmin(rs.getBoolean("tipo_account"));
-				bean.setCodice_fiscale(rs.getString("codice_fiscale"));
+				bean.setCodiceFiscale(rs.getString("codice_fiscale"));
 
 			}
 
@@ -238,7 +238,7 @@ public synchronized void doUpdate (User var, String vecchia_mail) throws SQLExce
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
 				bean.setAdmin(rs.getBoolean("tipo_account"));
-				bean.setCodice_fiscale(rs.getString("codice_fiscale"));
+				bean.setCodiceFiscale(rs.getString("codice_fiscale"));
 
 				
 				users.add(bean);

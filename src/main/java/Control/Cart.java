@@ -1,10 +1,9 @@
 package Control;
 
-import java.io.IOException; 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Map.Entry;
 
 import javax.servlet.RequestDispatcher;
@@ -34,6 +33,8 @@ public class Cart extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+    
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		Carrello obj = (Carrello) request.getSession().getAttribute("carrello");

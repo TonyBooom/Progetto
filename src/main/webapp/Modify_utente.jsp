@@ -4,6 +4,7 @@
 <%
 	User var = (User)request.getSession().getAttribute("Utente loggato");
 	if(var == null){
+		
 		System.out.println("prova");
 		response.sendRedirect("./Login.jsp");
 		return;
@@ -18,13 +19,9 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <link rel="stylesheet" href="./style/modify_utente.css">
 	    <link rel="shortcut icon" type="image/png" href="logo.png">
-	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
-	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />	
-	    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
-	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<title>Sito TSW|Modifica dati utente</title>
+	   
+	   		
+	   	<title>Sito TSW|Modifica dati utente</title>
 	</head>
 	
 	<body>
@@ -40,6 +37,7 @@
 							<p><strong>Email</strong></p>
 							<input class="campi" type="text" name="Email_nuova" value="<%= var.getEmail()%>">
 							<input class="campi" type="hidden" name="Email_vecchia" value="<%= var.getEmail()%>">
+							<input class="campi" type="hidden" name="CodiceFiscale" value="<%= var.getCodiceFiscale()%>">
 							<input class="campi" type="hidden" name="action" value="update">
 						    </div>
 						</div>	

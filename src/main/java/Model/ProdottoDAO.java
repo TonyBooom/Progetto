@@ -286,7 +286,7 @@ public class ProdottoDAO
 			preparedStatement.setInt(9, var.getCodprodotto());
 			
 			preparedStatement.executeUpdate();
-			//connection.commit();
+			connection.commit();
 
 		} 
 		finally 
