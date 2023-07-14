@@ -15,17 +15,19 @@ public class ComposizioneDAO {
 	
 	public synchronized  void doSaveAll(OrdineBean user) throws SQLException
 	{
+		
+		String insertSQL = "INSERT INTO " + ComposizioneDAO.TABLE_NAME
+				+ " (codi_prodotto, num_ordine, quantita, iva, prezzo)"
+				+ " VALUES (?, ?, ?, ?, ?)";
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		
-		String insertSQL = "INSERT INTO " + ComposizioneDAO.TABLE_NAME
-					+ " (codi_prodotto, num_ordine, quantita, iva, prezzo)"
-					+ " VALUES (?, ?, ?, ?, ?)";
-
 		try
 		{
-			connection = DriverManagerConnectionPool.getConnection();
-			
+			 connection = DriverManagerConnectionPool.getConnection();
+			 preparedStatement = connection.prepareStatement(insertSQL);
+		    	 
+		     
 			for(ProdottoBean bean : user.getComposizione().keySet()){  // Per scorrere ogni singolo prodotto nella hashmap, utilizzo il for
 				
 				
@@ -42,15 +44,8 @@ public class ComposizioneDAO {
 		} 
 		finally 
 		{
-			try 
-			{
-				if (preparedStatement != null)
-					preparedStatement.close();
-			} 
-			finally 
-			{
 				DriverManagerConnectionPool.releaseConnection(connection);
-			}
+			
 		}
 		
 	}

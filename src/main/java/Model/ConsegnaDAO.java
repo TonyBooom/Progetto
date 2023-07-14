@@ -47,7 +47,7 @@ public class ConsegnaDAO {
 				//connection.commit(); //Salva le modifiche sul database
 		} 
 		finally 
-		{
+		{	
 			try 
 			{
 				if (preparedStatement != null)

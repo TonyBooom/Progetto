@@ -51,7 +51,7 @@
 	<div class="padre">
 		<div class="container">
 			<div class="item_descr_pagina">
-				<img class="image" src="<%= var.getImmagine().getPath()%>">
+				<img src="<%= var.getImmagine().getPath()%>"  class="image" alt="immagine prodotto">
 			</div>
 			
 			<div class="item-descrizione">
@@ -70,7 +70,7 @@
 				<p class = "product-title-price">&euro; <%= String.format("%.02f", var.getPrezzo()) %> <span>iva inc.</span></p>
 				<p class="container-bottone">
 					<button class="aggiungi">
-						<a href="Cart?action=add&id=<%=var.getCodprodotto()%>&qnt=1&provenienza=catalogo">Aggiungi al carrello</a>
+						<a href="Cart?action=add&id=<%=var.getCodProdotto()%>&qnt=1&provenienza=catalogo">Aggiungi al carrello</a>
 					</button>
 				</p>
 			</div>

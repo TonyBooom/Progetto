@@ -52,14 +52,14 @@
 			
 			<div class="prodotto">
 			
-				<a href="Catalogo?action=view&id=<%=var.getCodprodotto()%>">
-							<img src="<%=var.getImmagine().getPath()%>" class="imgProdotto">
+				<a href="Catalogo?action=view&id=<%=var.getCodProdotto()%>">
+							<img src="<%=var.getImmagine().getPath()%>" class="imgProdotto" alt="immagine elemento">
 				</a>	
-				<a href="Catalogo?action=view&id=<%=var.getCodprodotto()%>">
+				<a href="Catalogo?action=view&id=<%=var.getCodProdotto()%>">
 							<%=var.getNome()%>
 							<br>
 				</a> 
-				<a href="Cart?action=add&id=<%=var.getCodprodotto()%>&qnt=1&provenienza=catalogo"></a>
+				<a href="Cart?action=add&id=<%=var.getCodProdotto()%>&qnt=1&provenienza=catalogo"></a>
 					
 			</div>
 						

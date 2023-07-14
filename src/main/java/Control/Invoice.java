@@ -1,6 +1,6 @@
 package Control;
 
-import Model.*;  
+import Model.*;   
 
 import java.io.File;
 import java.io.IOException;
@@ -199,7 +199,7 @@ public class Invoice extends HttpServlet {
             
             contentStream.beginText();
             contentStream.newLineAtOffset(textX + columnWidths[0] + columnWidths[1] + columnWidths[2], textY);
-            contentStream.showText(bean.getData_ordine().toString()); // Inserisci la data d'acquisto
+            contentStream.showText(bean.getDataOrdine().toString()); // Inserisci la data d'acquisto
             contentStream.endText();
             
             textY -= rowHeight;

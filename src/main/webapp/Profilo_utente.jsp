@@ -143,7 +143,7 @@
 				
 				<div class="dunno"> 
 					<p><strong>Nominativo:</strong> <%=pbean.getNominativo() %></p>
-					<p><strong>Codice Carta:</strong> <%=pbean.getCodice_carta() %></p>
+					<p><strong>Codice Carta:</strong> <%=pbean.getCodiceCarta() %></p>
 					<p><strong>Mese Scadenza:</strong> <%=pbean.getMeseScadenza() %></p>
 					<p><strong>Anno Scadenza:</strong> <%=pbean.getAnnoScadenza() %></p>
 					<p><strong>CVV:</strong> ***</p>
@@ -175,6 +175,7 @@
 			
 			<div class="tabella"> 
 			<table class="tab">
+			  <caption>Descrizione tabella</caption>
 				<tr> <!--  INTESTAZIONE TABELLA  -->
 					<th>ID ordine </th>
 					<th>Data ordine </th>
@@ -187,11 +188,11 @@
 			<%for(OrdineBean bean : arr){ %>
 				<tr> <!-- CONTENUTO TABELLA -->
 					<td> <%= bean.getIdOrdine() %></td>
-					<td> <%= bean.getData_ordine() %></td>
-					<td> <%= bean.getStato_ordine() %></td>
+					<td> <%= bean.getDataOrdine() %></td>
+					<td> <%= bean.getStatoOrdine() %></td>
 					<td> <%= bean.getCodUtente().getNome()  %></td>
-					<td> <%= bean.getCodPagamento().getCodice_carta() %></td>
-					<td> <%= String.format("%.02f", bean.getPrezzo_totale()) %> &euro; </td>
+					<td> <%= bean.getCodPagamento().getCodiceCarta() %></td>
+					<td> <%= String.format("%.02f", bean.getPrezzoTotale()) %> &euro; </td>
 					<td>
 						<form action="Invoice" method="post">
 							<input type="hidden" name="ordine" value="<%= bean.getIdOrdine()%>">
