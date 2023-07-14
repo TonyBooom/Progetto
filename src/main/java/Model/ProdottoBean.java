@@ -2,74 +2,76 @@ package Model;
 
 public class ProdottoBean {
 	
-	int codprodotto;
-	String Nome;
-	float Prezzo;
-	String Descrizione;
-	ImmagineBean Immagine;
-	int Rimosso;
-	CategoriaBean Categoria;
-	int Quantita;
-	double Iva;
+	int codProdotto;
+	String nome;
+	float prezzo;
+	String descrizione;
+	ImmagineBean immagine;
+	int rimosso;
+	CategoriaBean categoria;
+	int quantita;
+	double iva;
+	
+	
+	public ProdottoBean() {
+		super();
+	}
 	
 	
 	public double getIva() {
-		return Iva;
+		return iva;
 	}
 	public void setIva(double iva) {
-		Iva = iva;
+		this.iva = iva;
 	}
 	
-	public int getCodprodotto() {
-		return codprodotto;
+	public int getCodProdotto() {
+		return codProdotto;
 	}
-	public void setCodprodotto(int codprodotto) {
-		this.codprodotto = codprodotto;
+	public void setCodProdotto(int codProdotto) {
+		this.codProdotto = codProdotto;
 	}
 	public CategoriaBean getCategoria() {
-		return Categoria;
+		return categoria;
 	}
 	public void setCategoria(CategoriaBean categoria) {
-		Categoria = categoria;
+		this.categoria = categoria;
 	}
 	public int getQuantita() {
-		return Quantita;
+		return quantita;
 	}
 	public void setQuantita(int quantita) {
-		Quantita = quantita;
+		this.quantita = quantita;
 	}
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
 	public void setNome(String nome) {
-		Nome = nome;
+		this.nome = nome;
 	}
 	public float getPrezzo() {
-		return Prezzo;
+		return prezzo;
 	}
 	public void setPrezzo(float prezzo) {
-		Prezzo = prezzo;
+		this.prezzo = prezzo;
 	}
 	public String getDescrizione() {
-		return Descrizione;
+		return descrizione;
 	}
 	public void setDescrizione(String descrizione) {
-		Descrizione = descrizione;
+		this.descrizione = descrizione;
 	}
 	public ImmagineBean getImmagine() {
-		return Immagine;
+		return immagine;
 	}
 	public void setImmagine(ImmagineBean immagine) {
-		Immagine = immagine;
+		this.immagine = immagine;
 	}
 	public int getRimosso() {
-		return Rimosso;
+		return rimosso;
 	}
 	public void setRimosso(int rimosso) {
-		Rimosso = rimosso;
-	}
-	public ProdottoBean() {
-		super();
+		this.rimosso = rimosso;
 	}
 	
 }

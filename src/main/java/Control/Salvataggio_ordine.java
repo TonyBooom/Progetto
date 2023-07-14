@@ -24,7 +24,6 @@ public class Salvataggio_ordine extends HttpServlet {
      */
     public Salvataggio_ordine() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -36,8 +35,8 @@ public class Salvataggio_ordine extends HttpServlet {
 		long millis = System.currentTimeMillis();
 		java.sql.Date date = new java.sql.Date(millis);
 		
-		obj.setData_ordine(date);
-		obj.setStato_ordine("In lavorazione");
+		obj.setDataOrdine(date);
+		obj.setStatoOrdine("In lavorazione");
 		
 		ConsegnaDAO cdao = new ConsegnaDAO();
 		try {
@@ -53,7 +52,7 @@ public class Salvataggio_ordine extends HttpServlet {
 			request.getSession().setAttribute("carrello_view", new HashMap<ProdottoBean,ArrayList<Double>>());
 			request.getSession().setAttribute("carrello", new Carrello());
 			
-			obj.setPrezzo_totale(Double.parseDouble(request.getParameter("pf")));
+			obj.setPrezzoTotale(Double.parseDouble(request.getParameter("pf")));
 			
 			obj.setIdOrdine(odao.doSave(obj));
 			
@@ -61,11 +60,9 @@ public class Salvataggio_ordine extends HttpServlet {
 			cmdao.doSaveAll(obj);
 			response.sendRedirect("Acquisto_completato.jsp");
 			
-		} catch (NumberFormatException e) {
+		} catch (NumberFormatException | SQLException e) {
 			e.printStackTrace();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+			}
 		
 		
 	}
@@ -74,7 +71,6 @@ public class Salvataggio_ordine extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

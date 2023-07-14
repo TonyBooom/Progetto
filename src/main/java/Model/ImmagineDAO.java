@@ -24,12 +24,12 @@ public class ImmagineDAO {
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(insertSQL);
-			preparedStatement.setString(1, user.getNome_immagine());
+			preparedStatement.setString(1, user.getNomeImmagine());
 			preparedStatement.setString(2, user.getPath());
 	
 			preparedStatement.executeUpdate();
 
-				//connection.commit(); //Salva le modifiche sul database
+			connection.commit(); //Salva le modifiche sul database
 		} 
 		finally 
 		{
@@ -65,7 +65,7 @@ public class ImmagineDAO {
 
 			while (rs.next()) 
 			{
-				bean.setNome_immagine(rs.getString("nome_immagine"));
+				bean.setNomeImmagine(rs.getString("nome_immagine"));
 				bean.setPath(rs.getString("path"));
 			}
 

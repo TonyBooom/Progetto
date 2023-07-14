@@ -2,14 +2,14 @@ package Model;
 
 public class ImmagineBean {
 
-	String nome_immagine;
+	String nomeImmagine;
 	String path;
 	
-	public String getNome_immagine() {
-		return nome_immagine;
+	public String getNomeImmagine() {
+		return nomeImmagine;
 	}
-	public void setNome_immagine(String nome_immagine) {
-		this.nome_immagine = nome_immagine;
+	public void setNomeImmagine(String nome_immagine) {
+		this.nomeImmagine = nome_immagine;
 	}
 	public String getPath() {
 		return path;

@@ -2,13 +2,18 @@ package Model;
 
 public class PagamentoBean {
 	
-	int idpagamento;
-	String Nominativo;
+	int idPagamento;
+	String nominativo;
 	int CVV;
 	int meseScadenza;
-	String Codice_carta;
+	String codiceCarta;
 	int annoScadenza;
 	User utente;
+	
+
+	public PagamentoBean() {
+		super();
+	}
 	
 	
 	public User getUtente() {
@@ -18,23 +23,23 @@ public class PagamentoBean {
 		this.utente = utente;
 	}
 	
-	public int getIdpagamento() {
-		return idpagamento;
+	public int getIdPagamento() {
+		return idPagamento;
 	}
-	public void setIdpagamento(int idpagamento) {
-		this.idpagamento = idpagamento;
+	public void setIdPagamento(int idPagamento) {
+		this.idPagamento = idPagamento;
 	}
 	public String getNominativo() {
-		return Nominativo;
+		return nominativo;
 	}
 	public void setNominativo(String nominativo) {
-		Nominativo = nominativo;
+		this.nominativo = nominativo;
 	}
 	public int getCVV() {
 		return CVV;
 	}
-	public void setCVV(int cVV) {
-		CVV = cVV;
+	public void setCVV(int CVV) {
+		this.CVV = CVV;
 	}
 	public int getMeseScadenza() {
 		return meseScadenza;
@@ -42,11 +47,11 @@ public class PagamentoBean {
 	public void setMeseScadenza(int meseScadenza) {
 		this.meseScadenza = meseScadenza;
 	}
-	public String getCodice_carta() {
-		return Codice_carta;
+	public String getCodiceCarta() {
+		return codiceCarta;
 	}
-	public void setCodice_carta(String codice_carta) {
-		Codice_carta = codice_carta;
+	public void setCodiceCarta(String codiceCarta) {
+		this.codiceCarta = codiceCarta;
 	}
 	public int getAnnoScadenza() {
 		return annoScadenza;
@@ -55,7 +60,4 @@ public class PagamentoBean {
 		this.annoScadenza = annoScadenza;
 	}
 	
-	public PagamentoBean() {
-		super();
-	}
 }

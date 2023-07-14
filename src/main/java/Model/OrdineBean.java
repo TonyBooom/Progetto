@@ -10,19 +10,24 @@ public class OrdineBean {
 	ConsegnaBean codConsegna;
 	User codUtente;
 	int idOrdine;
-	Date data_ordine;
-	String stato_ordine;
+	Date dataOrdine;
+	String statoOrdine;
 	HashMap<ProdottoBean, ArrayList<Double>> composizione = new HashMap<>();  // Posizione 0 ci mettiamo quantit�, Posizione 1 ci mettiamo Iva, Posizione 2 ci mettiamo Prezzo
-	Double Prezzo_totale;
+	Double prezzoTotale;
 	
 	//come gestiamo l'iva: insieme al prodotto salvato, salviamo anche la quantit�, l'iva ed il prezzo al momento dell'acquisto
 	
-	
-	public Double getPrezzo_totale() {
-		return Prezzo_totale;
+	public OrdineBean() {
+		super();
 	}
-	public void setPrezzo_totale(Double prezzo_totale) {
-		Prezzo_totale = prezzo_totale;
+	
+	
+	
+	public Double getPrezzoTotale() {
+		return prezzoTotale;
+	}
+	public void setPrezzoTotale(Double prezzoTotale) {
+		this.prezzoTotale = prezzoTotale;
 	}
 	
 	public HashMap<ProdottoBean, ArrayList<Double>> getComposizione() {
@@ -56,21 +61,17 @@ public class OrdineBean {
 	public void setIdOrdine(int idOrdine) {
 		this.idOrdine = idOrdine;
 	}
-	public Date getData_ordine() {
-		return data_ordine;
+	public Date getDataOrdine() {
+		return dataOrdine;
 	}
-	public void setData_ordine(Date data_ordine) {
-		this.data_ordine = data_ordine;
+	public void setDataOrdine(Date dataOrdine) {
+		this.dataOrdine = dataOrdine;
 	}
-	public String getStato_ordine() {
-		return stato_ordine;
+	public String getStatoOrdine() {
+		return statoOrdine;
 	}
-	public void setStato_ordine(String stato_ordine) {
-		this.stato_ordine = stato_ordine;
-	}
-	
-	public OrdineBean() {
-		super();
+	public void setStatoOrdine(String statoOrdine) {
+		this.statoOrdine = statoOrdine;
 	}
 	
 	

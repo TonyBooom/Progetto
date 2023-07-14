@@ -24,7 +24,6 @@ public class Salva_carta_pagamento extends HttpServlet {
      */
     public Salva_carta_pagamento() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -36,7 +35,7 @@ public class Salva_carta_pagamento extends HttpServlet {
 			PagamentoDAO pdao = new PagamentoDAO();
 			
 			bean.setNominativo(request.getParameter("intestatario"));
-			bean.setCodice_carta(request.getParameter("cod_carta"));
+			bean.setCodiceCarta(request.getParameter("cod_carta"));
 			bean.setCVV(Integer.parseInt(request.getParameter("cod_cvv")));
 			bean.setMeseScadenza(Integer.parseInt(request.getParameter("month").substring(5, 7)));
 			bean.setAnnoScadenza(Integer.parseInt(request.getParameter("month").substring(0, 4)));
@@ -45,7 +44,6 @@ public class Salva_carta_pagamento extends HttpServlet {
 				
 				
 				User ut = (User) request.getSession().getAttribute("Utente loggato");
-				System.out.println(ut.getEmail().toString());
 				pdao.doSave(bean, ut);
 				
 				UserDao udao = new UserDao();
@@ -62,7 +60,6 @@ public class Salva_carta_pagamento extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

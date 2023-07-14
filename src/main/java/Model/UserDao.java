@@ -50,7 +50,7 @@ public class UserDao
 		
 	}
 	
-public synchronized void doUpdate (User var, String vecchia_mail) throws SQLException {
+public synchronized void doUpdate (User var, String vecchiaMail) throws SQLException {
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -68,7 +68,7 @@ public synchronized void doUpdate (User var, String vecchia_mail) throws SQLExce
 			preparedStatement.setString(3, var.getNome());
 			preparedStatement.setString(4, var.getCognome());
 			preparedStatement.setString(5, var.getCodiceFiscale());
-			preparedStatement.setString(6, vecchia_mail);		// per sapere quale mail cambiare tenendo come riferimento quella vecchia durante la modifica
+			preparedStatement.setString(6, vecchiaMail);		// per sapere quale mail cambiare tenendo come riferimento quella vecchia durante la modifica
 			
 			preparedStatement.executeUpdate();
 			
@@ -138,10 +138,11 @@ public synchronized void doUpdate (User var, String vecchia_mail) throws SQLExce
 
 			while (rs.next()) 
 			{
+				String email = "email";
 				bean = new User();
-				bean.setPagamento(pdao.doRetrieveByUtente(rs.getString("email")));
-				bean.setConsegna(cdao.doRetrieveByUtente(rs.getString("email")));
-				bean.setEmail(rs.getString("email"));
+				bean.setPagamento(pdao.doRetrieveByUtente(rs.getString(email)));
+				bean.setConsegna(cdao.doRetrieveByUtente(rs.getString(email)));
+				bean.setEmail(rs.getString(email));
 				bean.setPassword(rs.getString("password"));
 				bean.setNome(rs.getString("nome"));
 				bean.setCognome(rs.getString("cognome"));
@@ -208,7 +209,7 @@ public synchronized void doUpdate (User var, String vecchia_mail) throws SQLExce
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<User> users = new LinkedList<User>();
+		Collection<User> users = new LinkedList<>();
 		PagamentoDAO pdao = new PagamentoDAO();
 		ConsegnaDAO cdao = new ConsegnaDAO();
 

@@ -25,7 +25,6 @@ public class Mostra_ordini_utente extends HttpServlet {
      */
     public Mostra_ordini_utente() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -34,15 +33,14 @@ public class Mostra_ordini_utente extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
 		OrdineDAO odao = new OrdineDAO();
-		User ubean = new User();
-		ArrayList<OrdineBean> var = null;  
+		ArrayList<OrdineBean> orders = null;  
 		String action = request.getParameter("action");
 		
 		if(action.equals("mostra")) {
 			try {
-				ubean = (User)request.getSession().getAttribute("Utente loggato");
-				var = (ArrayList<OrdineBean>) odao.doRetrieveAllByUtente(ubean.getEmail());
-				request.setAttribute("ordini", var);
+				User ubean = (User)request.getSession().getAttribute("Utente loggato");
+				orders = (ArrayList<OrdineBean>) odao.doRetrieveAllByUtente(ubean.getEmail());
+				request.setAttribute("ordini", orders);
 				RequestDispatcher rs = request.getRequestDispatcher("Profilo_utente.jsp");
 				rs.include(request, response);
 				
@@ -60,7 +58,6 @@ public class Mostra_ordini_utente extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 

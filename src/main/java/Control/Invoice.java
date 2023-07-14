@@ -1,6 +1,6 @@
 package Control;
 
-import Model.*; 
+import Model.*;  
 
 import java.io.File;
 import java.io.IOException;

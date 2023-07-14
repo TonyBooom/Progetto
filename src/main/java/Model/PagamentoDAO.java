@@ -39,7 +39,7 @@ public class PagamentoDAO {
 			preparedStatement.setString(2, user.getNominativo());
 			preparedStatement.setInt(3, user.getCVV());
 			preparedStatement.setInt(4, user.getMeseScadenza());
-			preparedStatement.setString(5, user.getCodice_carta());
+			preparedStatement.setString(5, user.getCodiceCarta());
 			preparedStatement.setInt(6, user.getAnnoScadenza());
 			preparedStatement.setString(7, ut.getEmail());
 	
@@ -81,11 +81,11 @@ public class PagamentoDAO {
 
 			while (rs.next()) 
 			{
-				bean.setIdpagamento(rs.getInt("id_pagamento"));
+				bean.setIdPagamento(rs.getInt("id_pagamento"));
 				bean.setNominativo(rs.getString("nominativo"));
 				bean.setCVV(rs.getInt("CVV"));
 				bean.setMeseScadenza(rs.getInt("meseScadenza"));
-				bean.setCodice_carta(rs.getString("codice_carta"));
+				bean.setCodiceCarta(rs.getString("codice_carta"));
 				bean.setAnnoScadenza(rs.getInt("annoScadenza"));
 			
 				UserDao udao = new UserDao();
@@ -163,11 +163,11 @@ public class PagamentoDAO {
 			{
 				PagamentoBean bean = new PagamentoBean();
 				
-				bean.setIdpagamento(rs.getInt("id_pagamento"));
+				bean.setIdPagamento(rs.getInt("id_pagamento"));
 				bean.setNominativo(rs.getString("nominativo"));
 				bean.setCVV(rs.getInt("CVV"));
 				bean.setMeseScadenza(rs.getInt("meseScadenza"));
-				bean.setCodice_carta(rs.getString("codice_carta"));
+				bean.setCodiceCarta(rs.getString("codice_carta"));
 				bean.setAnnoScadenza(rs.getInt("annoScadenza"));
 				
 				arr.add(bean);

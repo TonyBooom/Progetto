@@ -1,6 +1,6 @@
 package Model;
 
-import java.sql.Connection;
+import java.sql.Connection; 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -45,12 +45,12 @@ public class OrdineDAO {
 			
 			preparedStatement = connection.prepareStatement(insertSQL);
 			preparedStatement.setInt(1, CID);
-			preparedStatement.setDate(2, user.getData_ordine());
-			preparedStatement.setString(3, user.getStato_ordine());
+			preparedStatement.setDate(2, user.getDataOrdine());
+			preparedStatement.setString(3, user.getStatoOrdine());
 			preparedStatement.setInt(4, user.getCodConsegna().getIdconsegna());
-			preparedStatement.setInt(5, user.getCodPagamento().getIdpagamento());
+			preparedStatement.setInt(5, user.getCodPagamento().getIdPagamento());
 			preparedStatement.setString(6, user.getCodUtente().getEmail());
-			preparedStatement.setDouble(7, user.getPrezzo_totale());
+			preparedStatement.setDouble(7, user.getPrezzoTotale());
 	
 			preparedStatement.executeUpdate();
 			connection.commit(); //Salva le modifiche sul database
@@ -92,9 +92,9 @@ public class OrdineDAO {
 			while (rs.next()) 
 			{
 				bean.setIdOrdine(rs.getInt("id_ordine"));
-				bean.setData_ordine(rs.getDate("data_ordine"));
-				bean.setStato_ordine(rs.getString("stato_ordine"));
-				bean.setPrezzo_totale(rs.getDouble("prezzo_totale"));
+				bean.setDataOrdine(rs.getDate("data_ordine"));
+				bean.setStatoOrdine(rs.getString("stato_ordine"));
+				bean.setPrezzoTotale(rs.getDouble("prezzo_totale"));
 				
 				ConsegnaDAO cdao = new ConsegnaDAO();
 				ConsegnaBean cbean = cdao.doRetrieveByKey(rs.getInt("cod_consegna"));
@@ -164,7 +164,7 @@ public class OrdineDAO {
 		return (result != 0);
 	}
 	
-	public synchronized void doUpdate (OrdineBean var) throws SQLException {
+	public synchronized void doUpdate (OrdineBean element) throws SQLException {
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
@@ -177,12 +177,12 @@ public class OrdineDAO {
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(upsql);
 			
-			preparedStatement.setDate(1, var.getData_ordine());
-			preparedStatement.setString(2, var.getStato_ordine());
-			preparedStatement.setInt(3, var.getCodConsegna().getIdconsegna());
-			preparedStatement.setInt(4, var.getCodPagamento().getIdpagamento());
-			preparedStatement.setString(5, var.getCodUtente().getEmail());
-			preparedStatement.setDouble(6, var.getPrezzo_totale());
+			preparedStatement.setDate(1, element.getDataOrdine());
+			preparedStatement.setString(2, element.getStatoOrdine());
+			preparedStatement.setInt(3, element.getCodConsegna().getIdconsegna());
+			preparedStatement.setInt(4, element.getCodPagamento().getIdPagamento());
+			preparedStatement.setString(5, element.getCodUtente().getEmail());
+			preparedStatement.setDouble(6, element.getPrezzoTotale());
 			
 			preparedStatement.executeUpdate();
 			connection.commit();
@@ -203,18 +203,18 @@ public class OrdineDAO {
 		
 	}
 	
-	public synchronized Collection<OrdineBean> doRetrieveAll(String var) throws SQLException {
+	public synchronized Collection<OrdineBean> doRetrieveAll(String element) throws SQLException {
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<OrdineBean> order = new ArrayList<OrdineBean>();
+		Collection<OrdineBean> order = new ArrayList<>();
 		
 		String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME;
 		
-		if (var != null && !var.equals("")) 
+		if (element != null && !element.equals("")) 
 		{
-			selectSQL += " ORDER BY " + var;
+			selectSQL += " ORDER BY " + element;
 		}
 
 		try 
@@ -229,9 +229,9 @@ public class OrdineDAO {
 				OrdineBean bean = new OrdineBean();
 
 				bean.setIdOrdine(rs.getInt("id_ordine"));
-				bean.setData_ordine(rs.getDate("data_ordine"));
-				bean.setStato_ordine(rs.getString("stato_ordine"));
-				bean.setPrezzo_totale(rs.getDouble("prezzo_totale"));
+				bean.setDataOrdine(rs.getDate("data_ordine"));
+				bean.setStatoOrdine(rs.getString("stato_ordine"));
+				bean.setPrezzoTotale(rs.getDouble("prezzo_totale"));
 				
 				ConsegnaDAO cdao = new ConsegnaDAO();
 				ConsegnaBean cbean = cdao.doRetrieveByKey(rs.getInt("cod_consegna"));
@@ -271,12 +271,12 @@ public class OrdineDAO {
 		
 	}
 	
-public synchronized Collection<OrdineBean> doRetrieveAllByUtente(String var) throws SQLException {
+public synchronized Collection<OrdineBean> doRetrieveAllByUtente(String element) throws SQLException {
 		
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		Collection<OrdineBean> order = new ArrayList<OrdineBean>();
+		Collection<OrdineBean> order = new ArrayList<>();
 		
 		String selectSQL = "SELECT * FROM " + OrdineDAO.TABLE_NAME + " WHERE cod_utente = ?";
 		
@@ -285,7 +285,7 @@ public synchronized Collection<OrdineBean> doRetrieveAllByUtente(String var) thr
 		{
 			connection = DriverManagerConnectionPool.getConnection();
 			preparedStatement = connection.prepareStatement(selectSQL);
-			preparedStatement.setString(1, var);
+			preparedStatement.setString(1, element);
 			
 			ResultSet rs = preparedStatement.executeQuery();
 
@@ -294,9 +294,9 @@ public synchronized Collection<OrdineBean> doRetrieveAllByUtente(String var) thr
 				OrdineBean bean = new OrdineBean();
 
 				bean.setIdOrdine(rs.getInt("id_ordine"));
-				bean.setData_ordine(rs.getDate("data_ordine"));
-				bean.setStato_ordine(rs.getString("stato_ordine"));
-				bean.setPrezzo_totale(rs.getDouble("prezzo_totale"));
+				bean.setDataOrdine(rs.getDate("data_ordine"));
+				bean.setStatoOrdine(rs.getString("stato_ordine"));
+				bean.setPrezzoTotale(rs.getDouble("prezzo_totale"));
 				
 				ConsegnaDAO cdao = new ConsegnaDAO();
 				ConsegnaBean cbean = cdao.doRetrieveByKey(rs.getInt("cod_consegna"));

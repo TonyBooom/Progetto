@@ -3,10 +3,10 @@ package Model;
 public class ConsegnaBean {
 	
 	int idconsegna;
-	String Via;
-	int Cap; 
-	int Numero;
-	String Citta;
+	String via;
+	int cap; 
+	int numero;
+	String citta;
 	User utente;
 	
 	
@@ -24,28 +24,28 @@ public class ConsegnaBean {
 		this.idconsegna = idconsegna;
 	}
 	public String getVia() {
-		return Via;
+		return via;
 	}
 	public void setVia(String via) {
-		Via = via;
+		this.via = via;
 	}
 	public int getCap() {
-		return Cap;
+		return cap;
 	}
 	public void setCap(int cap) {
-		Cap = cap;
+		this.cap = cap;
 	}
 	public int getNumero() {
-		return Numero;
+		return numero;
 	}
 	public void setNumero(int numero) {
-		Numero = numero;
+		this.numero = numero;
 	}
 	public String getCitta() {
-		return Citta;
+		return citta;
 	}
 	public void setCitta(String citta) {
-		Citta = citta;
+		this.citta = citta;
 	}
 	
 	public ConsegnaBean() {

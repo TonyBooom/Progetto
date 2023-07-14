@@ -83,11 +83,9 @@ input.box[type="number"] {
 }
 
 @media (max-width: 800px){
+	
 	.modify_form {
   		max-width:100%;
-	}
-	.modify_form{
-	max-width:100%;
 	}
 	.modify{
 	max-width:100%;

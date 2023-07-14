@@ -9,7 +9,7 @@ public class Carrello {
 
 	public Carrello() {
 		super();
-		this.cart = new HashMap<Integer, Integer>();
+		this.cart = new HashMap<>();
 	}
 	
 	

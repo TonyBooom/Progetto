@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class ComposizioneDAO {
 	
@@ -27,10 +28,9 @@ public class ComposizioneDAO {
 			
 			for(ProdottoBean bean : user.getComposizione().keySet()){  // Per scorrere ogni singolo prodotto nella hashmap, utilizzo il for
 				
-				System.out.println("hello");
 				
 				preparedStatement = connection.prepareStatement(insertSQL);
-				preparedStatement.setInt(1, bean.getCodprodotto());
+				preparedStatement.setInt(1, bean.getCodProdotto());
 				preparedStatement.setInt(2, user.getIdOrdine());
 				preparedStatement.setDouble(3, user.getComposizione().get(bean).get(0));		// Attraverso la chiave nel bean, prendo la quantit� del prodotto nell'ordine
 				preparedStatement.setDouble(4, user.getComposizione().get(bean).get(1));
@@ -76,7 +76,7 @@ public class ComposizioneDAO {
 			{
 				
 				ProdottoDAO pdao = new ProdottoDAO();
-				ArrayList<Double> array = new ArrayList<Double>();
+				ArrayList<Double> array = new ArrayList<>();
 				array.add(rs.getDouble("quantita"));
 				array.add(rs.getDouble("iva"));
 				array.add(rs.getDouble("prezzo"));

@@ -1,6 +1,6 @@
 package Control;
 
-import java.io.File;  
+import java.io.File;   
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -69,7 +69,7 @@ public class Catalogo extends HttpServlet {
 
                     RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(destination);
                     dispatcher.forward(request, response);
-                    return;
+                    
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
@@ -89,14 +89,13 @@ public class Catalogo extends HttpServlet {
     }
     
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 	
 	private void LoadImage() throws IOException {
 	    String savePath = getServletContext().getRealPath("") + File.separator + "images/";
 
-	    String uri = "C:/Immagine";
+	    String uri = "C:/Immagine";	
 	    File folder = new File(uri);
 	    File[] listOfFiles = folder.listFiles();
 
@@ -111,7 +110,7 @@ public class Catalogo extends HttpServlet {
 	                    out.write(bytes, 0, read);
 	                }
 	            } catch (Exception e) {
-	                System.out.println("Error: " + e.getMessage());
+	                System.out.println("Error: " + e.getMessage()); //Tipologia di eccezione rilevata
 	                throw new IOException(e);
 	            }
 	        }

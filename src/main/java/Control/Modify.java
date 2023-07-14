@@ -22,7 +22,6 @@ import Model.*;
  * Servlet implementation class Modify
  */
 @WebServlet("/Modify")
-@MultipartConfig
 public class Modify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String SAVE_DIR = "images";
@@ -31,7 +30,6 @@ public class Modify extends HttpServlet {
      */
     public Modify() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -104,7 +102,6 @@ public class Modify extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 	

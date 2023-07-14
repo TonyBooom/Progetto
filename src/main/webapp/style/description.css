@@ -119,12 +119,12 @@ input[type="radio"]:checked + label {
 @media all and (min-width : 700px) and (max-width : 1000px) {
 	
 	.item-descrizione {
-		display: flex;
-		flex-direction: column;
-		padding-left: 10px;
 		text-align:center;
 		background-color: red;
 		justify-content:center;
+		display: inline-block;
+		flex-direction: column;
+		padding-left: 10px;
 	}
 	
 	.container-bottone {
@@ -149,12 +149,6 @@ input[type="radio"]:checked + label {
 		justify-content: center;
 		text-align: center;
 		padding-left: 0;
-	}
-	
-	.item-descrizione {
-		display: inline-block;
-		flex-direction: column;
-		padding-left: 10px;
 	}
 	
 	.image {

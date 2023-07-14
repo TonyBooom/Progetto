@@ -1,8 +1,6 @@
 package Model;
 
-import java.util.ArrayList;
-
-import Model.*;
+import java.util.ArrayList; 
 
 public class User {
 	
@@ -11,8 +9,8 @@ public class User {
 	private String nome;
 	private String cognome;
 	Boolean admin;
-	ArrayList<ConsegnaBean> Consegna = new ArrayList<>();
-	ArrayList<PagamentoBean> Pagamento = new ArrayList<>();
+	ArrayList<ConsegnaBean> consegna = new ArrayList<>();
+	ArrayList<PagamentoBean> pagamento = new ArrayList<>();
 
 	public String getEmail() {
 		return email;
@@ -40,16 +38,16 @@ public class User {
 	}
 	
 	public ArrayList<ConsegnaBean> getConsegna() {
-		return Consegna;
+		return consegna;
 	}
 	public void setConsegna(ArrayList<ConsegnaBean> consegna) {
-		Consegna = consegna;
+		this.consegna = consegna;
 	}
 	public ArrayList<PagamentoBean> getPagamento() {
-		return Pagamento;
+		return pagamento;
 	}
 	public void setPagamento(ArrayList<PagamentoBean> pagamento) {
-		Pagamento = pagamento;
+		this.pagamento = pagamento;
 	}
 	public Boolean isAdmin() {
 		return admin;

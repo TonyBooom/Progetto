@@ -48,18 +48,16 @@
 				for (ProdottoBean var : obj) {
 			%>
 	
-			<!--  POPUP DA INTEGRARE CON LO SCRIPT SOTTO: 
-			<jps:include page="PopupAcquisto.html" /> -->
 			
 			<div class="prodotto">
 			
-				<a href="Catalogo?action=view&id=<%=var.getCodprodotto()%>">
+				<a href="Catalogo?action=view&id=<%=var.getCodProdotto()%>">
 							<img src="<%=var.getImmagine().getPath()%>" class="imgProdotto">
 					</a>	
-				<a href="Catalogo?action=view&id=<%=var.getCodprodotto()%>">
+				<a href="Catalogo?action=view&id=<%=var.getCodProdotto()%>">
 							<%=var.getNome()%>
 					</a>
-				<a href="Modify?action=mod&id=<%= var.getCodprodotto()%>">   <br> <input class ="pulsante" type="button" value="Modifica"> </a>
+				<a href="Modify?action=mod&id=<%= var.getCodProdotto()%>">   <br> <input class ="pulsante" type="button" value="Modifica"> </a>
 				
 			</div>
 					

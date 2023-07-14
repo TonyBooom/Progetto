@@ -3,8 +3,8 @@ package Model;
 public class CategoriaBean {
 
 	int codcategoria;
-	String Nome;
-	ImmagineBean Immagine;
+	String nome;
+	ImmagineBean immagine;
 	
 	
 	public int getCodcategoria() {
@@ -14,20 +14,20 @@ public class CategoriaBean {
 		this.codcategoria = codcategoria;
 	}
 	public String getNome() {
-		return Nome;
+		return nome;
 	}
 	public void setNome(String nome) {
-		Nome = nome;
+		this.nome = nome;
 	}
 	public CategoriaBean() {
 		super();
 	}
 	
 	public ImmagineBean getImmagine() {
-		return Immagine;
+		return immagine;
 	}
 	public void setImmagine(ImmagineBean immagine) {
-		Immagine = immagine;
+		this.immagine = immagine;
 	}
 	
 	

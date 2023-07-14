@@ -7,15 +7,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class DriverManagerConnectionPool  {
+	
+	private DriverManagerConnectionPool() {
+	}
 
 	private static List<Connection> freeDbConnections;
 
 	static {
-		freeDbConnections = new LinkedList<Connection>();
+		freeDbConnections = new LinkedList<>();
 		try {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 		} catch (ClassNotFoundException e) {
-			System.out.println("DB driver not found:"+ e.getMessage());
+			System.err.println("DB driver not found:"+ e.getMessage());
 		} 
 	}
 	
@@ -38,7 +41,7 @@ public class DriverManagerConnectionPool  {
 		Connection connection;
 
 		if (!freeDbConnections.isEmpty()) {
-			connection = (Connection) freeDbConnections.get(0);
+			connection =  freeDbConnections.get(0);
 			freeDbConnections.remove(0);
 
 			try {
@@ -55,7 +58,7 @@ public class DriverManagerConnectionPool  {
 		return connection;
 	}
 
-	public static synchronized void releaseConnection(Connection connection) throws SQLException {
+	public static synchronized void releaseConnection(Connection connection)  {
 		if(connection != null) freeDbConnections.add(connection);
 	}
 }

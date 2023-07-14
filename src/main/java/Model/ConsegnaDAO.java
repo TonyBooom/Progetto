@@ -30,6 +30,7 @@ public class ConsegnaDAO {
 			ResultSet id = query.executeQuery();
 			
 			id.next();
+			
 			int CID = id.getInt("id_consegna") + 1;
 			
 			
@@ -142,7 +143,7 @@ public class ConsegnaDAO {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 
-		ArrayList<ConsegnaBean> arr = new ArrayList<ConsegnaBean>();
+		ArrayList<ConsegnaBean> arr = new ArrayList<>();
 
 		String selectSQL = "SELECT * FROM " + TABLE_NAME + " WHERE utente = ?";
 

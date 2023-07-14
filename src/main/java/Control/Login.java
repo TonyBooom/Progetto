@@ -1,6 +1,6 @@
 package Control;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.sql.SQLException;
 
 import javax.servlet.ServletException;
@@ -23,7 +23,6 @@ public class Login extends HttpServlet {
      */
     public Login() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -44,7 +43,6 @@ public class Login extends HttpServlet {
 			utente = udao.doRetrieveByKey(email);
 			if(utente != null && utente.getEmail().compareTo("") != 0) {
 				if(password.compareTo(utente.getPassword()) == 0) {
-					//response.getWriter().append("nome: " + utente.getNome() + "\ncognome: " + utente.getCognome());
 					
 					boolean isAdmin = utente.isAdmin();
 
@@ -79,7 +77,6 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 
