@@ -31,22 +31,24 @@ public class Login extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String Email;
-		String Password;
+		String email;
+		String password;
 		
-		Email= request.getParameter("username");
-		Password=request.getParameter("password");
+		email= request.getParameter("username");
+		password=request.getParameter("password");
 		
 		User utente = new User();
 		UserDao udao = new UserDao();
 		
 		try {
-			utente = udao.doRetrieveByKey(Email);
+			utente = udao.doRetrieveByKey(email);
 			if(utente != null && utente.getEmail().compareTo("") != 0) {
-				if(Password.compareTo(utente.getPassword()) == 0) {
+				if(password.compareTo(utente.getPassword()) == 0) {
 					//response.getWriter().append("nome: " + utente.getNome() + "\ncognome: " + utente.getCognome());
 					
-					if(utente.isAdmin()) {
+					boolean isAdmin = utente.isAdmin();
+
+					if(isAdmin) {
 						request.getSession().setAttribute("secure", "Admin");
 						request.getSession().setAttribute("Utente loggato" , utente );       //Per motivi di sicurezza 
 						response.sendRedirect("./CatalogAdmin.jsp");

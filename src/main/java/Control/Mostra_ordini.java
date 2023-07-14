@@ -1,9 +1,8 @@
 package Control;
 
-import java.io.IOException; 
+import java.io.IOException;  
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -34,15 +33,18 @@ public class Mostra_ordini extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String ordini = "ordini";	
+		String admin = "profilo_admin.jsp";
+
 		OrdineDAO odao = new OrdineDAO();
-		ArrayList<OrdineBean> var = null;  
+		ArrayList<OrdineBean> order = null;  
 		String action = request.getParameter("action");
 		
 		if(action.equals("mostra")) {
 			try {
-				var = (ArrayList<OrdineBean>) odao.doRetrieveAll(null);
-				request.setAttribute("ordini", var);
-				RequestDispatcher rs = request.getRequestDispatcher("profilo_admin.jsp");
+				order = (ArrayList<OrdineBean>) odao.doRetrieveAll(null);
+				request.setAttribute(ordini, order);
+				RequestDispatcher rs = request.getRequestDispatcher(admin);
 				rs.include(request, response);
 				
 			} catch (SQLException e) {
@@ -52,9 +54,9 @@ public class Mostra_ordini extends HttpServlet {
 		else if(action.equals("data")) {
 			
 			try {
-				var = (ArrayList<OrdineBean>) odao.doRetrieveAll("data_ordine");
-				request.setAttribute("ordini", var);
-				RequestDispatcher rs = request.getRequestDispatcher("profilo_admin.jsp");
+				order = (ArrayList<OrdineBean>) odao.doRetrieveAll("data_ordine");
+				request.setAttribute(ordini, order);
+				RequestDispatcher rs = request.getRequestDispatcher(admin);
 				rs.include(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -65,9 +67,9 @@ public class Mostra_ordini extends HttpServlet {
 		}else if(action.equals("utente")) {
 			
 			try {
-				var = (ArrayList<OrdineBean>) odao.doRetrieveAll("cod_utente");
-				request.setAttribute("ordini", var);
-				RequestDispatcher rs = request.getRequestDispatcher("profilo_admin.jsp");
+				order = (ArrayList<OrdineBean>) odao.doRetrieveAll("cod_utente");
+				request.setAttribute(ordini, order);
+				RequestDispatcher rs = request.getRequestDispatcher(admin);
 				rs.include(request, response);
 			} catch (SQLException e) {
 				e.printStackTrace();

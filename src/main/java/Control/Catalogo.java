@@ -50,108 +50,72 @@ public class Catalogo extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ProdottoDAO pdao = new ProdottoDAO();
-		
-		String action = request.getParameter("action");
-		if(action != null) {
-			if(action.equalsIgnoreCase("read")) {
-				try {
-					Collection<ProdottoBean> obj = pdao.doRetrieveAll(null);		// Siccome la funzione doRetrieveAll istanzia gi� un oggetto di Collection<ProdottoBean> � inutile  istanziarlo
-					request.setAttribute("prodotti", obj); 
-					
-					String secure = (String) request.getSession().getAttribute("secure");
-				if(secure == null || secure.equalsIgnoreCase("Utente")) {
-					RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/Catalog.jsp");
-					dispatcher.forward(request, response);
-					return;
-					}
-					if(secure.equalsIgnoreCase("Admin")) {
-						RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/CatalogAdmin.jsp");
-						dispatcher.forward(request, response);
-						return;
-					}
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				
-				
-			}
-			if(action.equalsIgnoreCase("view")) {
-				int var =Integer.parseInt(request.getParameter("id"));
-				
-				try {
-					ProdottoBean obj = pdao.doRetrieveByKey(var);
-					request.setAttribute("description", obj);
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Description.jsp");
-					dispatcher.forward(request, response);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				
-			}
-		}
-		
-		
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ProdottoDAO pdao = new ProdottoDAO();
+        String action = request.getParameter("action");
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+        if (action != null) {
+            if (action.equalsIgnoreCase("read")) {
+                try {
+                    Collection<ProdottoBean> obj = pdao.doRetrieveAll(null);
+                    request.setAttribute("prodotti", obj);
+
+                    String secure = (String) request.getSession().getAttribute("secure");
+                    String destination = "/Catalog.jsp";
+                    
+                    if (secure != null && secure.equalsIgnoreCase("Admin")) {
+                        destination = "/CatalogAdmin.jsp";
+                    }
+
+                    RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher(destination);
+                    dispatcher.forward(request, response);
+                    return;
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            } else if (action.equalsIgnoreCase("view")) {
+                int prod = Integer.parseInt(request.getParameter("id"));
+
+                try {
+                    ProdottoBean obj = pdao.doRetrieveByKey(prod);
+                    request.setAttribute("description", obj);
+                    RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Description.jsp");
+                    dispatcher.forward(request, response);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
 	
-	private void LoadImage() throws IOException
-    {
-        String savePath = getServletContext().getRealPath("") + File.separator + "images/";
+	private void LoadImage() throws IOException {
+	    String savePath = getServletContext().getRealPath("") + File.separator + "images/";
 
-        File folder = new File("C:/Immagine");
-        File[] listOfFiles = folder.listFiles();
+	    String uri = "C:/Immagine";
+	    File folder = new File(uri);
+	    File[] listOfFiles = folder.listFiles();
 
-        OutputStream out = null;
-        InputStream filecontent = null;
+	    for (int i = 0; i < listOfFiles.length; i++) {
+	        if (listOfFiles[i].isFile()) {
+	            try (OutputStream out = new FileOutputStream(new File(savePath + File.separator + listOfFiles[i].getName()));
+	                 InputStream filecontent = new FileInputStream(listOfFiles[i])) {
 
-        for (int i = 0; i < listOfFiles.length; i++) 
-        {
-            if (listOfFiles[i].isFile()) 
-            {
-                try 
-                {
-                    out = new FileOutputStream(new File(savePath + File.separator + listOfFiles[i].getName()));
-                    filecontent = new FileInputStream(listOfFiles[i]);
-
-                    int read = 0;
-                    final byte[] bytes = new byte[1024];
-
-                    while ((read = filecontent.read(bytes)) != -1) 
-                    {
-                        out.write(bytes, 0, read);
-                    }
-
-                    out.close();
-                    filecontent.close();
-                } 
-                catch (Exception e) 
-                {
-                    System.out.println("Error:" + e.getMessage());
-                    throw new IOException(e);
-                } 
-                finally 
-                {
-                    if (out != null)
-                    {
-                        out.close();
-                    }
-                    if (filecontent != null) 
-                    {
-                        filecontent.close();
-                    }
-                }
-            } 
-        }
-    }
+	                final byte[] bytes = new byte[1024];
+	                int read;
+	                while ((read = filecontent.read(bytes)) != -1) {
+	                    out.write(bytes, 0, read);
+	                }
+	            } catch (Exception e) {
+	                System.out.println("Error: " + e.getMessage());
+	                throw new IOException(e);
+	            }
+	        }
+	    }
+	}
 
 }

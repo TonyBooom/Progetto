@@ -37,17 +37,22 @@ public class Cart extends HttpServlet {
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		Carrello obj = (Carrello) request.getSession().getAttribute("carrello");
+		String carrello = "carrello";
+
+		Carrello obj = (Carrello) request.getSession().getAttribute(carrello);
+		
+		
 		if(obj == null) {
 			
 			obj = new Carrello();
-			request.getSession().setAttribute("carrello", obj);
+			request.getSession().setAttribute(carrello, obj);
 		}
 		String action = request.getParameter("action");
 		if(action != null) {
 			if(action.equalsIgnoreCase("add")) {
 				
-				Integer id, qnt;
+				Integer id;
+				Integer qnt;
 				id = Integer.parseInt(request.getParameter("id"));
 				qnt = Integer.parseInt(request.getParameter("qnt"));
 				
@@ -63,13 +68,13 @@ public class Cart extends HttpServlet {
 				else {
 					obj.addToCart(id, qnt);
 				}
-				if(request.getParameter("provenienza").equals("carrello")) {
-					request.getSession().setAttribute("carrello", obj); // Per evitare che il carrello non si aggiorni
+				if(request.getParameter("provenienza").equals(carrello)) {
+					request.getSession().setAttribute(carrello, obj); // Per evitare che il carrello non si aggiorni
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Carrello.jsp");
 					dispatcher.forward(request, response);
 				}
 				else {
-					request.getSession().setAttribute("carrello", obj); // Per evitare che il carrello non si aggiorni
+					request.getSession().setAttribute(carrello, obj); // Per evitare che il carrello non si aggiorni
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Catalog.jsp");
 					dispatcher.forward(request, response);
 				}
@@ -82,22 +87,22 @@ public class Cart extends HttpServlet {
 				
 				for(Entry<Integer, Integer> entry : obj.getCart().entrySet()) {
 					
-					Double dou = (double) Integer.valueOf(entry.getValue());
-					ProdottoBean var = new ProdottoBean();
+					Double dou = (double) entry.getValue();
+					ProdottoBean prod = new ProdottoBean();
 					
 					try {
-						var = pdao.doRetrieveByKey(entry.getKey());
+						prod = pdao.doRetrieveByKey(entry.getKey());
 					} catch (SQLException e) {
 						e.printStackTrace();
 					}
 					
-					ArrayList<Double> arr = new ArrayList<Double>();
+					ArrayList<Double> arr = new ArrayList<>();
 					
 					arr.add(dou);
-					arr.add(var.getIva());
-					arr.add((double)var.getPrezzo());
+					arr.add(prod.getIva());
+					arr.add((double)prod.getPrezzo());
 					
-					ogg.put(var, arr); //Grazie alla funzione nel foreach riusciamo a visualizzare tutti quanti gli oggetti nella mappa facendo riferimento alla chiave con il suo valore ovvero la quantit�
+					ogg.put(prod, arr); //Grazie alla funzione nel foreach riusciamo a visualizzare tutti quanti gli oggetti nella mappa facendo riferimento alla chiave con il suo valore ovvero la quantit�
 				}
 				
 				request.setAttribute("carrello_view", ogg);
@@ -107,18 +112,19 @@ public class Cart extends HttpServlet {
 			
 			if(action.equalsIgnoreCase("sub")) {
 				
-				Integer id, qnt, result;
+				Integer id;
+				Integer result;
+				
 				id = Integer.parseInt(request.getParameter("id"));
-				qnt = Integer.parseInt(request.getParameter("qnt"));
 				
 				result = obj.getCart().get(id);
 				result--;
 				
 				obj.updateCart(id, result);
 				
-				if(request.getParameter("provenienza").equals("carrello")) {
+				if(request.getParameter("provenienza").equals(carrello)) {
 					
-					request.getSession().setAttribute("carrello", obj);
+					request.getSession().setAttribute(carrello, obj);
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Carrello.jsp");
 					dispatcher.forward(request, response);
 					
@@ -133,9 +139,9 @@ public class Cart extends HttpServlet {
 				qnt = 0;
 				obj.updateCart(id, qnt);
 				
-				if(request.getParameter("provenienza").equals("carrello")) {
+				if(request.getParameter("provenienza").equals(carrello)) {
 					
-					request.getSession().setAttribute("carrello", obj);
+					request.getSession().setAttribute(carrello, obj);
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Carrello.jsp");
 					dispatcher.forward(request, response);
 				}
@@ -145,9 +151,9 @@ public class Cart extends HttpServlet {
 				
 				obj = new Carrello();
 				
-				if(request.getParameter("provenienza").equals("carrello")) {
+				if(request.getParameter("provenienza").equals(carrello)) {
 					
-					request.getSession().setAttribute("carrello", obj);
+					request.getSession().setAttribute(carrello, obj);
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Carrello.jsp");
 					dispatcher.forward(request, response);
 				}

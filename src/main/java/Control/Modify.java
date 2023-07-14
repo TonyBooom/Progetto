@@ -37,68 +37,68 @@ public class Modify extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ProdottoDAO pdao = new ProdottoDAO();
-		
-		String action = request.getParameter("action");
-		if(action != null) {
-			if(action.equalsIgnoreCase("mod")) {
-				int var =Integer.parseInt(request.getParameter("id"));
-				try {
-					ProdottoBean obj = pdao.doRetrieveByKey(var);					
-					request.setAttribute("modify", obj);
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Modify.jsp");
-					dispatcher.forward(request, response);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				} 
-			}
-			
-			if(action.equalsIgnoreCase("update")) {
-				
-				ProdottoBean obj = null;
-				try {
-					obj = pdao.doRetrieveByKey(Integer.parseInt(request.getParameter("id")));
-				} catch (NumberFormatException | SQLException e1) {
-					e1.printStackTrace();
-				}
-				obj.setNome((String) request.getParameter("Nome"));
-				obj.setPrezzo(Float.parseFloat(request.getParameter("Prezzo")));
-				obj.setDescrizione((String) request.getParameter("Descrizione"));
-				obj.setQuantita(Integer.parseInt(request.getParameter("Quantit�")));
-				
-				Part var = request.getPart("Immagine");
-				System.out.println(GetFileName(var).equalsIgnoreCase(""));
-				
-				if(!GetFileName(var).equalsIgnoreCase("")) {
-					
-					ImmagineDAO IMDAO = new ImmagineDAO();
-					System.out.println(GetFileName(var));
-					try {
-						obj.setImmagine(IMDAO.doRetrieveByKey(GetFileName(var)));
-					} catch (SQLException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-					
-				}
-				obj.setRimosso(Integer.parseInt(request.getParameter("Rimosso")));
-				
-				try {
-					pdao.doUpdate(obj);
-					if(!GetFileName(var).equalsIgnoreCase(""))
-					saveFile(var, getServletContext().getRealPath(""));
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CatalogAdmin.jsp");
-				dispatcher.forward(request, response);
-				
-			}
-		}
-		
-		
-	}
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        ProdottoDAO pdao = new ProdottoDAO();
+        String action = request.getParameter("action");
+
+        if (action == null) {
+            return;
+        }
+
+        if (action.equalsIgnoreCase("mod")) {
+            int imm = Integer.parseInt(request.getParameter("id"));
+            try {
+                ProdottoBean obj = pdao.doRetrieveByKey(imm);
+                request.setAttribute("modify", obj);
+                RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Modify.jsp");
+                dispatcher.forward(request, response);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        } else if (action.equalsIgnoreCase("update")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            ProdottoBean obj = null;
+
+            try {
+                obj = pdao.doRetrieveByKey(id);
+            } catch (NumberFormatException | SQLException e1) {
+                e1.printStackTrace();
+            }
+
+            obj.setNome((String) request.getParameter("Nome"));
+            obj.setPrezzo(Float.parseFloat(request.getParameter("Prezzo")));
+            obj.setDescrizione((String) request.getParameter("Descrizione"));
+            obj.setQuantita(Integer.parseInt(request.getParameter("Quantità")));
+
+            Part imm = request.getPart("Immagine");
+            String fileName = GetFileName(imm);
+
+            if (!fileName.equalsIgnoreCase("")) {
+                ImmagineDAO IMDAO = new ImmagineDAO();
+                System.out.println(fileName);
+                try {
+                    obj.setImmagine(IMDAO.doRetrieveByKey(fileName));
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
+            }
+            
+            obj.setRimosso(Integer.parseInt(request.getParameter("Rimosso")));
+
+            try {
+                pdao.doUpdate(obj);
+                
+                if (!fileName.equalsIgnoreCase("")) {
+                    saveFile(imm, getServletContext().getRealPath(""));
+                }
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+
+            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/CatalogAdmin.jsp");
+            dispatcher.forward(request, response);
+        }
+    }
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -108,77 +108,39 @@ public class Modify extends HttpServlet {
 		doGet(request, response);
 	}
 	
-	private String GetFileName(Part part)
-    {
-        for (String content : part.getHeader("content-disposition").split(";")) 
-        {
-            if (content.trim().startsWith("filename")) {
-            	content = content.substring(
-                        content.indexOf('=') + 1).trim().replace("\"", "");
-            	
-            	return content.substring(0, content.length() - 4);
-            }
-        }
-        return null;
-    }
-	
-	private void saveFile(Part filePart, String appPath) throws IOException
-    {
-        final String fileName = GetFileName(filePart);
+	private String GetFileName(Part part) {
+	    for (String content : part.getHeader("content-disposition").split(";")) {
+	        if (content.trim().startsWith("filename")) {
+	            content = content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
+	            return content.substring(0, content.length() - 4);
+	        }
+	    }
+	    return null;
+	}
 
-        if(fileName.isBlank() || fileName.isEmpty())
-        {
-            return;
-        }
-
-        String savePath = appPath + File.separator + SAVE_DIR;
-        String savePathStore= "C:\\Immagini";
-
-        OutputStream out = null;
-        InputStream filecontent = null;
-
-        try 
-        {
-            out = new FileOutputStream(new File(savePath + File.separator + fileName));//accesso negato qui
-            filecontent = filePart.getInputStream();
-
-            int read = 0;
-            final byte[] bytes = new byte[1024];
-
-            while ((read = filecontent.read(bytes)) != -1) 
-            {
-                out.write(bytes, 0, read);
-            }
-
-            out.close();
-            filecontent.close();
-
-            out = new FileOutputStream(new File(savePathStore + File.separator + fileName));
-            filecontent = filePart.getInputStream();
-
-            read = 0;
-
-            while ((read = filecontent.read(bytes)) != -1) 
-            {
-                out.write(bytes, 0, read);
-            }
-        } 
-        catch (Exception e) 
-        {
-            System.out.println("Error:" + e.getMessage());
-            throw new IOException(e);
-        } 
-        finally 
-        {
-            if (out != null)
-            {
-                out.close();
-            }
-            if (filecontent != null) 
-            {
-                filecontent.close();
-            }
-        }
-    }
+	private void saveFile(Part filePart, String appPath) throws IOException {
+	    final String fileName = GetFileName(filePart);
+	    if (fileName.isBlank() || fileName.isEmpty()) {
+	        return;
+	    }
+	    String savePath = appPath + File.separator + SAVE_DIR;
+	    String savePathStore = "C:\\Immagini";
+	    
+	    try (OutputStream out = new FileOutputStream(new File(savePath + File.separator + fileName));
+	         InputStream filecontent = filePart.getInputStream();
+	         OutputStream outStore = new FileOutputStream(new File(savePathStore + File.separator + fileName))) {
+	        
+	        final byte[] bytes = new byte[1024];
+	        int read;
+	        while ((read = filecontent.read(bytes)) != -1) {
+	            out.write(bytes, 0, read);
+	            outStore.write(bytes, 0, read);
+	        }
+	        
+	    } catch (Exception e) {
+	        System.out.println("Error: " + e.getMessage());
+	        throw new IOException(e);
+	    }
+	}
 
 }
