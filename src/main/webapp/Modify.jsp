@@ -34,7 +34,7 @@
 			
 				<h1>Modifica prodotto</h1>
 				
-				<input class="box" type="hidden" name="id" value="<%= var.getCodprodotto()%>">
+				<input class="box" type="hidden" name="id" value="<%= var.getCodProdotto()%>">
 				<input class="box" type="hidden" name="action" value="update">
 				
 				<div class="modify">
@@ -54,7 +54,7 @@
 				
 				<div class="modify">
 					<p class="p_mod">Immagine</p>
-					<img src="<%= var.getImmagine()%>">
+					<img src="<%= var.getImmagine()%>" alt="immagine">
 					<input class="box" type="file" name="Immagine" >	
 				</div>
 				

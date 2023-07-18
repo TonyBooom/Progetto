@@ -52,7 +52,7 @@
 			<div class="prodotto">
 			
 				<a href="Catalogo?action=view&id=<%=var.getCodProdotto()%>">
-							<img src="<%=var.getImmagine().getPath()%>" class="imgProdotto">
+							<img src="<%=var.getImmagine().getPath()%>" class="imgProdotto" alt="immagine prodotto">
 					</a>	
 				<a href="Catalogo?action=view&id=<%=var.getCodProdotto()%>">
 							<%=var.getNome()%>

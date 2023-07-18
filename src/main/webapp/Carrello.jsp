@@ -6,7 +6,6 @@
 	if(obj == null){
 		response.sendRedirect("./Cart?action=view");
 	}
-	//request.setAttribute("carrello_view", null);
 	request.getSession().setAttribute("carrello_view", obj);
 %>
 
@@ -52,35 +51,18 @@
 				
 					<div class="prodottoCarrello">
 						<div>
-							<a href="Catalogo?action=view&id=<%= var.getCodprodotto()%>"> <img src="<%= var.getImmagine().getPath()%>" class="immag"> </a>
+							<a href="Catalogo?action=view&id=<%= var.getCodProdotto()%>"> <img src="<%= var.getImmagine().getPath()%>" class="immag" alt="image"> </a>
 						</div>
 						<div>
-							<a href="Catalogo?action=view&id=<%=var.getCodprodotto()%>" class="prodTitolo" style="text-decoration:none; color:black"> <%= var.getNome()%> </a>	
+							<a href="Catalogo?action=view&id=<%=var.getCodProdotto()%>" class="prodTitolo" style="text-decoration:none; color:black"> <%= var.getNome()%> </a>	
 						</div>
 						<div>
 							<p class="prodPrezzo">Prezzo: <%= String.format("%.02f", var.getPrezzo()) %> &euro;</p>
 						</div>
-						<div>	
-							<label class="prodLabel" for="quantità">Quantità: <%= entry.getValue().get(0) %> </label>
-							<form action="Cart" method="post">
-								<input type="hidden" name="action" value="sub">
-								<input type="hidden" name="id" value="<%=var.getCodprodotto()%>">
-								<input type="hidden" name="qnt" value="1">
-								<input type="hidden" name="provenienza" value="carrello">
-								<input type="submit" value="-" class="pulsanti"> &nbsp;	
-							</form>
-							<form action="Cart" method="post">
-								<input type="hidden" name="action" value="add">
-								<input type="hidden" name="id" value="<%=var.getCodprodotto()%>">
-								<input type="hidden" name="qnt" value="1">
-								<input type="hidden" name="provenienza" value="carrello">
-								<input type="submit" value="+" class="pulsanti"> &nbsp;
-							</form>
-							 
-						</div> 		
+					 		
 						<form id="rimuoviProd" action="Cart" method="POST">
 							<input type="hidden" name="action" value="rmv">
-							<input type="hidden" name="id" value="<%=var.getCodprodotto()%>">
+							<input type="hidden" name="id" value="<%=var.getCodProdotto()%>">
 							<input type="hidden" name="qnt" value="1">
 							<input type="hidden" name="provenienza" value="carrello">
 							<div>

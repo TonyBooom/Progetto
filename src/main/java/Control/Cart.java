@@ -36,30 +36,30 @@ super();
 */
 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	String carrello = "carrello";
-	Carrello obj = (Carrello) request.getSession().getAttribute(carrello);
+	Carrello cart = (Carrello) request.getSession().getAttribute(carrello);
 
-	if(obj == null) {
-		obj = new Carrello();
-		request.getSession().setAttribute(carrello, obj);
+	if(cart == null) {
+		cart = new Carrello();
+		request.getSession().setAttribute(carrello, cart);
 	}
 
 	String action = request.getParameter("action");
 	if(action != null) {
 		switch (action.toLowerCase()) {
 			case "add":
-				handleAddAction(request, response, obj, carrello);
+				handleAddAction(request, response, cart, carrello);
 				break;
 			case "view":
-				handleViewAction(request, response, obj);
+				handleViewAction(request, response, cart);
 				break;
 			case "sub":
-				handleSubAction(request, response, obj, carrello);
+				handleSubAction(request, response, cart, carrello);
 				break;
 			case "rmv":
-				handleRmvAction(request, response, obj, carrello);
+				handleRmvAction(request, response, cart, carrello);
 				break;
 			case "rmvall":
-				handleRmvAllAction(request, response, obj, carrello);
+				handleRmvAllAction(request, response, cart, carrello);
 				break;
 		}
 }
@@ -74,36 +74,36 @@ doGet(request, response);
 }
 
 
-private void handleAddAction(HttpServletRequest request, HttpServletResponse response, Carrello obj, String carrello) throws ServletException, IOException {
+private void handleAddAction(HttpServletRequest request, HttpServletResponse response, Carrello cart, String carrello) throws ServletException, IOException {
 	Integer id = Integer.parseInt(request.getParameter("id"));
 	Integer qnt = Integer.parseInt(request.getParameter("qnt"));
 
 		
 	if(qnt == 0) {
-		obj.updateCart(id, 0); // Rimuovi l'elemento se la quantità inserita è 0
+		cart.updateCart(id, 0); // Rimuovi l'elemento se la quantità inserita è 0
 		}
 
-	if(obj.getCart().containsKey(id)) {
-		obj.updateCart(id, qnt + obj.getCart().get(id)); // Modifica la quantità se l'oggetto è già presente nel carrello
+	if(cart.getCart().containsKey(id)) {
+		cart.updateCart(id, qnt + cart.getCart().get(id)); // Modifica la quantità se l'oggetto è già presente nel carrello
 		}
 	
 	else {
-		obj.addToCart(id, qnt); // Aggiungi l'oggetto al carrello
+		cart.addToCart(id, qnt); // Aggiungi l'oggetto al carrello
 	}
  
 	String destination = request.getParameter("provenienza").equals(carrello) ? "/Carrello.jsp" : "/Catalog.jsp";
-	request.getSession().setAttribute(carrello, obj);
+	request.getSession().setAttribute(carrello, cart);
 	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
 	dispatcher.forward(request, response);
 }
 
 
-private void handleViewAction(HttpServletRequest request, HttpServletResponse response, Carrello obj) throws ServletException, IOException {
+private void handleViewAction(HttpServletRequest request, HttpServletResponse response, Carrello cart) throws ServletException, IOException {
 	HashMap<ProdottoBean, ArrayList<Double>> ogg = new HashMap<>();
 	ProdottoDAO pdao = new ProdottoDAO();
 
 
-	for(Entry<Integer, Integer> entry : obj.getCart().entrySet()) {
+	for(Entry<Integer, Integer> entry : cart.getCart().entrySet()) {
 		Double dou = (double) entry.getValue();
 		ProdottoBean prod = new ProdottoBean();
  	
@@ -128,44 +128,44 @@ private void handleViewAction(HttpServletRequest request, HttpServletResponse re
 }
 
 
-private void handleSubAction(HttpServletRequest request, HttpServletResponse response, Carrello obj, String carrello) throws ServletException, IOException {
+private void handleSubAction(HttpServletRequest request, HttpServletResponse response, Carrello cart, String carrello) throws ServletException, IOException {
 	Integer id = Integer.parseInt(request.getParameter("id"));
-	Integer result = obj.getCart().get(id);
+	Integer result = cart.getCart().get(id);
 	
 	result--;  //Rimozione dal carrello
-	obj.updateCart(id, result);
+	cart.updateCart(id, result);
 
 	String destination = request.getParameter("provenienza").equals(carrello) ? "/Carrello.jsp" : null;
 	if(destination != null) {
-		request.getSession().setAttribute(carrello, obj);
+		request.getSession().setAttribute(carrello, cart);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
 		dispatcher.forward(request, response);
 	}
 }
 
-private void handleRmvAction(HttpServletRequest request, HttpServletResponse response, Carrello obj, String carrello) throws ServletException, IOException {
+private void handleRmvAction(HttpServletRequest request, HttpServletResponse response, Carrello cart, String carrello) throws ServletException, IOException {
 	Integer id = Integer.parseInt(request.getParameter("id"));
 	Integer qnt = 0;
-	obj.updateCart(id, qnt);
+	cart.updateCart(id, qnt);
 
 	String destination = request.getParameter("provenienza").equals(carrello) ? "/Carrello.jsp" : null;
 	
 	if(destination != null) {
- 	request.getSession().setAttribute(carrello, obj);
+ 	request.getSession().setAttribute(carrello, cart);
  	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
  	dispatcher.forward(request, response);
  }
 }
 
 
-private void handleRmvAllAction(HttpServletRequest request, HttpServletResponse response, Carrello obj, String carrello) throws ServletException, IOException {
+private void handleRmvAllAction(HttpServletRequest request, HttpServletResponse response, Carrello cart, String carrello) throws ServletException, IOException {
 	
-	obj = new Carrello();
+	cart = new Carrello();
 
 
 	String destination = request.getParameter("provenienza").equals(carrello) ? "/Carrello.jsp" : null;
 	if(destination != null) {
-		request.getSession().setAttribute(carrello, obj);
+		request.getSession().setAttribute(carrello, cart);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(destination);
 		dispatcher.forward(request, response);
 	}

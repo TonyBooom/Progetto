@@ -44,7 +44,6 @@ public class Catalogo extends HttpServlet {
 	
     public Catalogo() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
 	/**
@@ -110,7 +109,7 @@ public class Catalogo extends HttpServlet {
 	                    out.write(bytes, 0, read);
 	                }
 	            } catch (Exception e) {
-	                System.out.println("Error: " + e.getMessage()); //Tipologia di eccezione rilevata
+	                System.err.println("Error: " + e.getMessage()); //Tipologia di eccezione rilevata
 	                throw new IOException(e);
 	            }
 	        }

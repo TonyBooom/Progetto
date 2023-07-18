@@ -25,7 +25,7 @@
 	    <link rel="shortcut icon" type="image/png" href="logo.png">
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-	    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 		<title>Sito TSW|Checkout</title>
 	</head>
 	
@@ -46,42 +46,36 @@
 	    		
 		    			<% 
 						if(obj != null && !obj.isEmpty()){
-						double Prezzo_finale = 0; 
+						double prezzoFinale = 0; 
 						for(Map.Entry<ProdottoBean, ArrayList<Double>> entry : obj.entrySet()){
-							ProdottoBean var = entry.getKey();
-						double Prezzo_totale =(entry.getValue().get(0) * var.getPrezzo());
+							ProdottoBean prodotto = entry.getKey();
+						double prezzoTotale =(entry.getValue().get(0) * prodotto.getPrezzo());
 						%>
 		    		
 		    			<li class="list-group-item d-flex justify-content-between lh-condensed">
 		                    <div style="display:flex">
 		                        <div>	
-		                        	<h6 class="my-0"><%=obj.get(var).get(0) + "x " + var.getNome()%></h6>
+		                        	<h6 class="my-0"><%=obj.get(prodotto).get(0) + "x " + prodotto.getNome()%></h6>
 		                    	</div>
 		                    </div>
-		                    <span class="text-muted"><%= String.format("%.02f",Prezzo_totale)%> &euro;</span>
+		                    <span class="text-muted"><%= String.format("%.02f",prezzoTotale)%> &euro;</span>
 		                </li>
 		                
-		    			<%Prezzo_finale = Prezzo_finale + Prezzo_totale; } %>
+		    			<%prezzoFinale = prezzoFinale + prezzoTotale; } %>
 		              
-		                <li class="list-group-item d-flex justify-content-between">
-		                    <span>Spedizione (EUR) </span> <%out.println("5&euro;"); %>
-		                </li>
-		                <li class="list-group-item d-flex justify-content-between">
-		                    <span>Totale (Sped. Escl.) </span><%= String.format("%.02f",Prezzo_finale) %> &euro;
-		                </li>
+		            
 		                <li class="list-group-item d-flex justify-content-between" class = "totale">
 		                    <span>Totale (EUR)</span>
-		                    <strong><%= String.format("%.02f",Prezzo_finale+5) %> &euro;</strong>
+		                    <strong><%= String.format("%.02f",prezzoFinale) %> &euro;</strong>
 		                </li>
 	            	</ul>
     			</div>
 			</div>
 		                <form action="Salvataggio_ordine" method="post"> 
-		                <input type="hidden" value="<%= Prezzo_finale%>" name="pf">
+		                <input type="hidden" value="<%= prezzoFinale%>" name="pf">
 						<div class="metodi">
 						
 								
-							<!-- Inserisci controllo che ridirige all'inserimento dei dati  -->
 							<span class="text-muted">Seleziona il tuo metodo di pagamento</span>
 								<% 
 									if (u.getPagamento() != null){
@@ -90,12 +84,12 @@
 								%>	
 								
 										<div class="choose">
-											<input type="radio" name="Pagamento" required value="<%= pbean.getIdpagamento()%>">
+											<input type="radio" name="Pagamento" required value="<%= pbean.getIdPagamento()%>">
 											<p><strong>Nome intestatario:</strong> <%=  pbean.getNominativo() %></p>
 											<p><strong>CVV:</strong> <%=  pbean.getCVV() %></p>
 											<p><strong>Mese Scadenza:</strong> <%=  pbean.getMeseScadenza() %></p>
 											<p><strong>Anno Scadenza:</strong> <%=  pbean.getAnnoScadenza() %></p>
-											<p><strong>Codice Carta:</strong> <%=  pbean.getCodice_carta() %></p>
+											<p><strong>Codice Carta:</strong> <%=  pbean.getCodiceCarta() %></p>
 										</div>
 								<%}}
 								

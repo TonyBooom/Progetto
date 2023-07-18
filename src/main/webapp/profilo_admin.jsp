@@ -122,6 +122,8 @@
 		
  		<div class="tabella"> 
 			<table class="tab">
+			  <caption>Descrizione tabella con dati ordine</caption>
+			
 				<tr> <!--  INTESTAZIONE TABELLA  -->
 					<th>ID ordine </th>
 					<th>Data ordine </th>
@@ -134,13 +136,13 @@
 			<%for(OrdineBean bean : arr){ %>
 				<tr> <!-- CONTENUTO TABELLA -->
 					<td> <%= bean.getIdOrdine() %></td>
-					<td> <%= bean.getData_ordine() %></td>
-					<td> <%= bean.getStato_ordine() %></td>
+					<td> <%= bean.getDataOrdine() %></td>
+					<td> <%= bean.getStatoOrdine() %></td>
 					<td> <%= bean.getCodUtente().getEmail() %></td>
-					<td> <%= bean.getCodPagamento().getCodice_carta() %></td>
-					<td> <%= String.format("%.02f", bean.getPrezzo_totale()) %> &euro; </td>
+					<td> <%= bean.getCodPagamento().getCodiceCarta() %></td>
+					<td> <%= String.format("%.02f", bean.getPrezzoTotale()) %> &euro; </td>
 					<td> <% for(ProdottoBean pbean : bean.getComposizione().keySet()){%>
-						<img class="images" src="<%= pbean.getImmagine().getPath() %>"> <%}%></td>
+						<img class="images" src="<%= pbean.getImmagine().getPath() %>" alt="immagine prodotto"> <%}%></td>
 				</tr>
 				<%} %>
 			</table>

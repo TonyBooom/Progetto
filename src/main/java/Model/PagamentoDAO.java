@@ -29,10 +29,14 @@ public class PagamentoDAO {
 			PreparedStatement query = connection.prepareStatement(ID);
 			
 			ResultSet id = query.executeQuery();
-						
-			id.next();
-			int CID = id.getInt("id_pagamento") + 1;
+					
+			int CID;
 			
+			if (id.next()) {
+				CID = id.getInt("id_pagamento") + 1;
+			} else {
+			    CID = 0;
+			}
 			
 			preparedStatement = connection.prepareStatement(insertSQL);
 			preparedStatement.setInt(1, CID);

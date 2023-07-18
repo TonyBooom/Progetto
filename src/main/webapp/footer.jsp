@@ -31,7 +31,8 @@
 	                        <h3>Creators</h3>
 	                        <ul>
 	                            <li><a href="https://github.com/TonyBooom">Botta Antonio</a></li>
-				    <li><a href="https://github.com/davidexvii-uni">Califano Davide</a></li>
+	                            <li><a href="https://github.com/TonyBooom">Faiella Basilio</a></li>
+	                            <li><a href="https://github.com/TonyBooom">Califano Davide</a></li>
 	                        </ul>
 	                    </div>
 	                    <div class="col-md-6 item text">
