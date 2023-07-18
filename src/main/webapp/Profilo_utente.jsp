@@ -82,7 +82,7 @@
 		            		<span class="material-symbols-outlined"> vpn_key </span>
 		 					<div class="areaNick">
 			                    <p><strong>Password</strong></p>
-			                    <p><%= obj.getPassword() %> </p>
+			                    <p>***</p>
 		                	</div>
 		            </div>
 		        </div> 
@@ -133,7 +133,7 @@
 				<p class="error_message_prov" style="display:none;"></p>
 			</div>
 
-		<% 	if(obj.getPagamento() != null && !obj.getPagamento().isEmpty()){ %>
+		<% 	if(obj.getPagamento() != null || !obj.getPagamento().isEmpty()){ %>
 		<div class="ciclo">
 			<p>I tuoi dati di pagamento</p>
 		</div>
@@ -152,7 +152,7 @@
 			<% }} %>
 			
 
-		<% 	if(obj.getPagamento() != null && !obj.getPagamento().isEmpty()){ %>
+		<% 	if(obj.getPagamento() != null || !obj.getPagamento().isEmpty()){ %>
 		
 		<div class="ciclo">
 			<p>I tuoi dati di consegna</p>
@@ -175,7 +175,7 @@
 			
 			<div class="tabella"> 
 			<table class="tab">
-			  <caption>Descrizione tabella</caption>
+			  <caption>Ordini</caption>
 				<tr> <!--  INTESTAZIONE TABELLA  -->
 					<th>ID ordine </th>
 					<th>Data ordine </th>

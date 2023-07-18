@@ -88,7 +88,7 @@ public class Invoice extends HttpServlet {
         contentStream.setFont(font, 10);
         contentStream.beginText();
         contentStream.newLineAtOffset(margin, 75);
-        contentStream.showText(bean.getCodUtente().getNome() +
+        contentStream.showText(bean.getCodUtente().getNome()+
         " "+bean.getCodUtente().getCognome());
         contentStream.endText();
 
@@ -163,14 +163,15 @@ public class Invoice extends HttpServlet {
         contentStream.endText();
 
         contentStream.beginText();
-        contentStream.newLineAtOffset(headerX + columnWidths[0], headerY);
-        contentStream.showText("Quantità");
-        contentStream.endText();
-
-        contentStream.beginText();
         contentStream.newLineAtOffset(headerX + columnWidths[0] + columnWidths[1], headerY);
         contentStream.showText("Prezzo");
         contentStream.endText();
+        
+        contentStream.beginText();
+        contentStream.newLineAtOffset(headerX + columnWidths[0], headerY);
+        contentStream.showText("Data Prenotazione");
+        contentStream.endText();
+
         
         contentStream.beginText();
         contentStream.newLineAtOffset(headerX + columnWidths[0] + columnWidths[1] + columnWidths[2], headerY);
@@ -187,15 +188,17 @@ public class Invoice extends HttpServlet {
             contentStream.showText(p.getNome());
             contentStream.endText();
 
-            contentStream.beginText();
-            contentStream.newLineAtOffset(textX + columnWidths[0], textY);
-            contentStream.showText(String.valueOf(bean.getComposizione().get(p).get(0).intValue()));
-            contentStream.endText();
-
+   
             contentStream.beginText();
             contentStream.newLineAtOffset(textX + columnWidths[0] + columnWidths[1], textY);
             contentStream.showText("€" + String.valueOf(bean.getComposizione().get(p).get(2).floatValue()));
             contentStream.endText();
+            
+            contentStream.beginText();
+            contentStream.newLineAtOffset(textX + columnWidths[0], textY);
+            contentStream.showText("Inserire datapren");
+            contentStream.endText();
+
             
             contentStream.beginText();
             contentStream.newLineAtOffset(textX + columnWidths[0] + columnWidths[1] + columnWidths[2], textY);

@@ -32,9 +32,13 @@ public class OrdineDAO {
 			
 			ResultSet id = query.executeQuery();
 			
-			id.next();
+			int CID;
 			
-			int CID = id.getInt("id_ordine") + 1;
+			if (id.next()) {
+				CID = id.getInt("id_ordine") + 1;
+			} else {
+			    CID = 0;
+			}
 			
 			preparedStatement = connection.prepareStatement(insertSQL);
 			preparedStatement.setInt(1, CID);

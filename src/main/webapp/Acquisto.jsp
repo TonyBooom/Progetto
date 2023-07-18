@@ -63,15 +63,10 @@
 		                
 		    			<%prezzoFinale = prezzoFinale + prezzoTotale; } %>
 		              
-		                <li class="list-group-item d-flex justify-content-between">
-		                    <span>Spedizione (EUR) </span> <%out.println("5&euro;"); %>
-		                </li>
-		                <li class="list-group-item d-flex justify-content-between">
-		                    <span>Totale (Sped. Escl.) </span><%= String.format("%.02f",prezzoFinale) %> &euro;
-		                </li>
+		            
 		                <li class="list-group-item d-flex justify-content-between" class = "totale">
 		                    <span>Totale (EUR)</span>
-		                    <strong><%= String.format("%.02f",prezzoFinale+5) %> &euro;</strong>
+		                    <strong><%= String.format("%.02f",prezzoFinale) %> &euro;</strong>
 		                </li>
 	            	</ul>
     			</div>

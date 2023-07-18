@@ -29,10 +29,13 @@ public class ConsegnaDAO {
 			
 			ResultSet id = query.executeQuery();
 			
-			id.next();
+			int CID;
 			
-			int CID = id.getInt("id_consegna") + 1;
-			
+			if (id.next()) {
+				CID = id.getInt("id_consegna") + 1;
+			} else {
+			    CID = 0;
+			}
 			
 			preparedStatement = connection.prepareStatement(insertSQL);
 			preparedStatement.setInt(1, CID);
@@ -44,7 +47,7 @@ public class ConsegnaDAO {
 	
 			preparedStatement.executeUpdate();
 
-				//connection.commit(); //Salva le modifiche sul database
+			connection.commit(); //Salva le modifiche sul database
 		} 
 		finally 
 		{	

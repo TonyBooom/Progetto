@@ -40,6 +40,22 @@
 			
 			});
 		});
+		
+		  $(document).ready(function() {
+		    var today = new Date();
+		    var tomorrow = new Date(today.getFullYear(), today.getMonth(), today.getDate() + 1);
+		    var dd = tomorrow.getDate();
+		    var mm = tomorrow.getMonth() + 1;
+		    var yyyy = tomorrow.getFullYear();
+		    if (dd < 10) {
+		      dd = '0' + dd;
+		    }
+		    if (mm < 10) {
+		      mm = '0' + mm;
+		    }
+		    var tomorrowFormatted = yyyy + '-' + mm + '-' + dd;
+		    $('#dataEvento').attr('min', tomorrowFormatted);
+		  });
 	</script>
 </head>
 
@@ -66,9 +82,14 @@
 				<label for="gold">Gold</label>
 		
 
-			
+			 	<p>Seleziona la data di prenotazione:</p>
+   		        <input type="date" id="dataEvento" name="dataEvento" required>
+   		        
+   		        
 				<p class = "product-title-price">&euro; <%= String.format("%.02f", var.getPrezzo()) %> <span>iva inc.</span></p>
 				<p class="container-bottone">
+				
+   			  
 					<button class="aggiungi">
 						<a href="Cart?action=add&id=<%=var.getCodProdotto()%>&qnt=1&provenienza=catalogo">Aggiungi al carrello</a>
 					</button>
@@ -78,6 +99,8 @@
 	</div>
 
 	<jsp:include page="footer.jsp" />
+	
+	
 </body>
 
 </html>

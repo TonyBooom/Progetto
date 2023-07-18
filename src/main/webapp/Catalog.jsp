@@ -58,9 +58,7 @@
 				<a href="Catalogo?action=view&id=<%=var.getCodProdotto()%>">
 							<%=var.getNome()%>
 							<br>
-				</a> 
-				<a href="Cart?action=add&id=<%=var.getCodProdotto()%>&qnt=1&provenienza=catalogo"></a>
-					
+				</a> 					
 			</div>
 						
 			
