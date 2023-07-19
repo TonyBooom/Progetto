@@ -27,7 +27,7 @@
 	    <link href="https://fonts.google.com/specimen/Ubuntu?sort=popularity&noto.lang=en_Latn" rel="stylesheet" type="text/css">
 	
 	    
-		<title>Sito TSW|Catalogo</title>
+		<title>ABD Studio|Catalogo</title>
 	</head>
 
 
@@ -35,7 +35,7 @@
 	
 		<jsp:include page="header.jsp" />
 	
-		<h1 class="titoloCatalogo">Catalogo Sito TSW</h1>
+		<h1 class="titoloCatalogo">Scegli il tuo set fotografico</h1>
 		
 		<div class="div_esterno">
 		

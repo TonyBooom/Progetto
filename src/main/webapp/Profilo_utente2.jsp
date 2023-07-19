@@ -38,7 +38,7 @@
 	    
 	    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<title>Sito TSW|Area utente</title>
+		<title>ABD Studio|Area utente</title>
 	</head>
 	
 	<body>

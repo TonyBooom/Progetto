@@ -96,7 +96,7 @@
         }
     }
 </script>
-    <title>Sito TSW|Registrazione</title>
+    <title>ABD Studio|Registrazione</title>
 </head>
 <%
 	if(request.getSession().getAttribute("utente") == null){;

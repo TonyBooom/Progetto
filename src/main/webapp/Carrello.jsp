@@ -21,7 +21,7 @@
 	    <link rel="stylesheet" href="style/carrello.css">
 	    <link rel="shortcut icon" type="image/png" href="logo.png">
     	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    	<title>Sito TSW|Carrello</title>
+    	<title>ABD Studio|Carrello</title>
     
 	</head>
 	

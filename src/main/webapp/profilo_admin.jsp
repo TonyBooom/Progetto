@@ -35,7 +35,7 @@
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />	
 	    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<title>Sito TSW|Area admin</title>
+		<title>ABD Studio|Area admin</title>
 	</head>
 	
 	<body>

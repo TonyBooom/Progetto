@@ -10,7 +10,7 @@
 	    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <link rel="stylesheet" href="style/acquisto_completato.css">
 	    <link rel="shortcut icon" type="image/png" href="logo.png">
-		<title>Sito TSW|Acquisto</title>
+		<title>ABD Studio|Acquisto</title>
 	</head>
 	
 	<body>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Registrazione ok</title>
+<title>Registrazione effettuata</title>
 </head>
 <body>
 

@@ -12,7 +12,7 @@
 	<link rel="shortcut icon" type="image/png" href="logo.jpg">
 	<link href="https://fonts.google.com/specimen/Ubuntu?sort=popularity&noto.lang=en_Latn" rel="stylesheet" type="text/css">
 	
-	<title>Sito TSW|Homepage</title>
+	<title>ABD Studio|Homepage</title>
     
 </head>
 
@@ -27,7 +27,7 @@
     		<video class="video" src="video1.mp4" autoplay loop muted></video>
     		
     		<div class="text-overlay">
-      			<h1>Sito TSW</h1>
+      			<h1>ABD Studio</h1>
     		</div>
   	</div>
 		

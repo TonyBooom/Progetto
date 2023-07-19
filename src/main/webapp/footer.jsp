@@ -36,7 +36,7 @@
 	                        </ul>
 	                    </div>
 	                    <div class="col-md-6 item text">
-	                        <h3>Sito TSW </h3>
+	                        <h3>ABD studio</h3>
 	                    </div>
 	                   	<div class="col item social">
 	                    <a href="https://www.facebook.com/dinfunisa"><i class="icon ion-social-facebook"></i></a>
@@ -45,7 +45,7 @@
 	                    <a href="https://www.instagram.com/dinfunisa/?hl=it"><i class="icon ion-social-instagram"></i></a>
 	                    </div>
 	                </div>
-	                <p class="copyright">Sito TSW @ 2023</p>
+	                <p class="copyright">ABD Studio @ 2023</p>
 	            </div>
 	        </footer>
 	    </div>

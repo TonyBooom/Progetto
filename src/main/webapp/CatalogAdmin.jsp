@@ -38,7 +38,7 @@
 
 		<jsp:include page="header.jsp" />
 
-		<h1 class="titoloCatalogo">Catalogo Admin Sito TSW</h1>
+		<h1 class="titoloCatalogo">Catalogo Admin ABD Studio</h1>
 	
 		<div class="div_esterno">
 	

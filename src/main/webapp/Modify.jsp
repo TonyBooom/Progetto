@@ -20,7 +20,7 @@
 		<link rel="stylesheet" href="style/modify.css">
 	    <link rel="stylesheet" href="style/header.css">
 	    <link rel="stylesheet" href="style/footer.css">
-		<title>Sito TSW|Modifica Catalogo</title> 
+		<title>ABD Studio|Modifica Catalogo</title> 
 	
 	</head>
 	

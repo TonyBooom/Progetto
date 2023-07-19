@@ -42,10 +42,10 @@ public class Invoice extends HttpServlet {
         PDDocument document = new PDDocument();
         PDPage page = new PDPage(PDRectangle.A4);
         document.addPage(page);
-        PDType0Font font = PDType0Font.load(document, new File("C:\\Users\\39351\\git\\Progetto\\TSW_2023\\Helvetica.ttf"));
+        PDType0Font font = PDType0Font.load(document, new File("C:\\Users\\david\\Documents\\GitHub\\Progetto\\Helvetica.ttf"));
 
         // Caricamento del logo
-        PDImageXObject logoImage = PDImageXObject.createFromFile("C:\\Users\\39351\\git\\Progetto\\TSW_2023\\logo.jpg", document);
+        PDImageXObject logoImage = PDImageXObject.createFromFile("C:\\Users\\david\\Documents\\GitHub\\Progetto\\logo.jpg", document);
 
         // Creazione del contenuto della fattura
         PDPageContentStream contentStream = new PDPageContentStream(document, page);
@@ -68,7 +68,7 @@ public class Invoice extends HttpServlet {
 
         // Aggiunta del logo
         float logoWidth = 100;
-        float logoHeight = 50;
+        float logoHeight = 100;
         contentStream.drawImage(logoImage, 50, 650, logoWidth, logoHeight);
        
         
@@ -76,12 +76,12 @@ public class Invoice extends HttpServlet {
         contentStream.setFont(font, 10);
         contentStream.beginText();
         contentStream.newLineAtOffset(page.getMediaBox().getWidth() - 250, 700);
-        contentStream.showText("Sito TSW");
+        contentStream.showText("ABD Studio");
         contentStream.endText();
 
         contentStream.beginText();
         contentStream.newLineAtOffset(page.getMediaBox().getWidth() - 250, 685);
-        contentStream.showText("Via Piazza Largo CAP XXXXX PROV XX");
+        contentStream.showText("Via Piazza Largo CAP 84084 PROV SA");
         contentStream.endText();
         
         // Aggiunta dei dati del cliente in fondo a sinistra
