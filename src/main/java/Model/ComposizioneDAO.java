@@ -24,9 +24,7 @@ public class ComposizioneDAO {
 		
 		try
 		{
-			 connection = DriverManagerConnectionPool.getConnection();
-			 preparedStatement = connection.prepareStatement(insertSQL);
-		    	 
+			 connection = DriverManagerConnectionPool.getConnection();		    	 
 		     
 			for(ProdottoBean bean : user.getComposizione().keySet()){  // Per scorrere ogni singolo prodotto nella hashmap, utilizzo il for
 				
