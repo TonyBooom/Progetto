@@ -47,7 +47,7 @@ public class ComposizioneDAO {
 		finally 
 		{
 				DriverManagerConnectionPool.releaseConnection(connection);
-			
+				connection.close();
 		}
 		
 	}
