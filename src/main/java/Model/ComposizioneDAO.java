@@ -42,6 +42,7 @@ public class ComposizioneDAO {
 				preparedStatement.executeUpdate();
 			}
 				connection.commit(); //Salva le modifiche sul database
+			
 		} 
 		finally 
 		{
