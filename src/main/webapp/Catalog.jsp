@@ -25,7 +25,6 @@
 	    <link rel="shortcut icon" type="image/png" href="logo.jpg">
 	    
 	    <link href="https://fonts.google.com/specimen/Ubuntu?sort=popularity&noto.lang=en_Latn" rel="stylesheet" type="text/css">
-		<link rel="stylesheet" href="./style/font.css">
 	
 	    
 		<title>Sito TSW|Catalogo</title>

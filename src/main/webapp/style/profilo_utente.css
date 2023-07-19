@@ -1,7 +1,17 @@
 .datiPersonali {
-  justify-content: center;
-  display: grid;
-  /* max-width:50%; */
+	width: 500px;
+	background-color: white;
+	padding: 0 2% 2% 2%;
+	border: 5px solid gray;
+	margin: 6% auto;
+	display: -webkit-box;
+	display: flex;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	flex-direction: column;
+	border-radius: 4px;
+	box-shadow: 0 2px 25px rgba(0, 0, 0, 0.2);
+	font-family: 'Rubik', sans-serif;
 }
 
 .Modifica {
