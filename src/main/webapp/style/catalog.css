@@ -11,6 +11,7 @@
 	flex-wrap: wrap;
     justify-content: center;
 	width:100%;
+	padding: 50px 0 200px;
 }
 
 .prodotto {
@@ -18,7 +19,7 @@
     text-align: center;
     vertical-align: top;
     padding: 2% 2%;
-    margin: 0 5px;
+    margin: 0 40px;
     width: 20%;
     font-family: 'Rubik', sans-serif;
     font-weight: bold;
