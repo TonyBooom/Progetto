@@ -58,9 +58,10 @@ header {
     transition: all 0.3s ease-in-out;
 }
 
-.element:hover{
+.element > a:hover{
     color:black;
 }
+
 .element:hover::after {
     width: 2rem;
 }
