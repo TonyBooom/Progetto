@@ -46,11 +46,27 @@ public class ComposizioneDAO {
 		} 
 		finally 
 		{
-				DriverManagerConnectionPool.releaseConnection(connection);
-				connection.close();
+
+				try 
+
+				{
+
+					if (preparedStatement != null)
+
+						preparedStatement.close();
+
+				} 
+
+				finally 
+
+				{
+
+					DriverManagerConnectionPool.releaseConnection(connection);
+
+				}
+
+			}
 		}
-		
-	}
 	
 	public synchronized HashMap<ProdottoBean, ArrayList<Double>> doRetrieveByOrdine(int idordine) throws SQLException			//La funzione mi riporta il prodotto con la sua quantit� nell'ordine
 	{
