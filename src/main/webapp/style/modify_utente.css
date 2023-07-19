@@ -14,7 +14,6 @@
 	background-color: gray;
 	font-weight: normal;
 	text-align:center;
-	width: 40%;
 	padding: 10px;
     margin: 2px;
     justify-content:space-around;
@@ -28,7 +27,6 @@ a:hover{
 
 .Modifica:hover {
 	color:black;
-	font-color:white;
 	background-color:lightblue;
 	transition:0.3s;
 	cursor: pointer;
