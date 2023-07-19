@@ -43,30 +43,18 @@ public class ComposizioneDAO {
 			}
 				connection.commit(); //Salva le modifiche sul database
 			
-		} 
-		finally 
-		{
-
-				try 
-
-				{
-
-					if (preparedStatement != null)
-
-						preparedStatement.close();
-
-				} 
-
+		}
 				finally 
 
 				{
+					if (preparedStatement != null)
 
+						preparedStatement.close();
 					DriverManagerConnectionPool.releaseConnection(connection);
 
 				}
 
 			}
-		}
 	
 	public synchronized HashMap<ProdottoBean, ArrayList<Double>> doRetrieveByOrdine(int idordine) throws SQLException			//La funzione mi riporta il prodotto con la sua quantit� nell'ordine
 	{
