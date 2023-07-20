@@ -22,9 +22,9 @@ import Model.*;
  * Servlet implementation class Modify
  */
 @WebServlet("/Modify")
+
 public class Modify extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final String SAVE_DIR = "images";
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -38,7 +38,7 @@ public class Modify extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         ProdottoDAO pdao = new ProdottoDAO();
         String action = request.getParameter("action");
-
+        
         if (action == null) {
             return;
         }
@@ -54,41 +54,30 @@ public class Modify extends HttpServlet {
                 e.printStackTrace();
             }
         } else if (action.equalsIgnoreCase("update")) {
+        	
             int id = Integer.parseInt(request.getParameter("id"));
+            
+            System.out.println(id);
             ProdottoBean obj = null;
 
             try {
                 obj = pdao.doRetrieveByKey(id);
-            } catch (NumberFormatException | SQLException e1) {
-                e1.printStackTrace();
+            } catch (NumberFormatException | SQLException e) {
+                e.printStackTrace();
             }
 
             obj.setNome((String) request.getParameter("Nome"));
             obj.setPrezzo(Float.parseFloat(request.getParameter("Prezzo")));
+            obj.setPrezzoSilver(Float.parseFloat(request.getParameter("PrezzoS")));
+            obj.setPrezzoGold(Float.parseFloat(request.getParameter("PrezzoG")));
             obj.setDescrizione((String) request.getParameter("Descrizione"));
-            obj.setQuantita(Integer.parseInt(request.getParameter("Quantità")));
 
-            Part imm = request.getPart("Immagine");
-            String fileName = GetFileName(imm);
-
-            if (!fileName.equalsIgnoreCase("")) {
-                ImmagineDAO IMDAO = new ImmagineDAO();
-                System.out.println(fileName);
-                try {
-                    obj.setImmagine(IMDAO.doRetrieveByKey(fileName));
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
             
             obj.setRimosso(Integer.parseInt(request.getParameter("Rimosso")));
 
             try {
                 pdao.doUpdate(obj);
                 
-                if (!fileName.equalsIgnoreCase("")) {
-                    saveFile(imm, getServletContext().getRealPath(""));
-                }
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -104,40 +93,4 @@ public class Modify extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		doGet(request, response);
 	}
-	
-	private String GetFileName(Part part) {
-	    for (String content : part.getHeader("content-disposition").split(";")) {
-	        if (content.trim().startsWith("filename")) {
-	            content = content.substring(content.indexOf('=') + 1).trim().replace("\"", "");
-	            return content.substring(0, content.length() - 4);
-	        }
-	    }
-	    return null;
-	}
-
-	private void saveFile(Part filePart, String appPath) throws IOException {
-	    final String fileName = GetFileName(filePart);
-	    if (fileName.isBlank() || fileName.isEmpty()) {
-	        return;
-	    }
-	    String savePath = appPath + File.separator + SAVE_DIR;
-	    String savePathStore = "C:\\Immagini";
-	    
-	    try (OutputStream out = new FileOutputStream(new File(savePath + File.separator + fileName));
-	         InputStream filecontent = filePart.getInputStream();
-	         OutputStream outStore = new FileOutputStream(new File(savePathStore + File.separator + fileName))) {
-	        
-	        final byte[] bytes = new byte[1024];
-	        int read;
-	        while ((read = filecontent.read(bytes)) != -1) {
-	            out.write(bytes, 0, read);
-	            outStore.write(bytes, 0, read);
-	        }
-	        
-	    } catch (Exception e) {
-	        System.out.println("Error: " + e.getMessage());
-	        throw new IOException(e);
-	    }
-	}
-
 }

@@ -92,7 +92,7 @@
 				<form action="Cart" method="POST">
 					<p class="product-title"><%= var.getNome() %></p>
 					<p class="descrizione"><%= var.getDescrizione()%></p>				
-					<p>Seleziona pacchetto</p>
+					<h4>Seleziona pacchetto</h4>
 					<input type="radio" id="base" name="favorite" value="Base" checked="checked">
 					<label for="base">Base</label><br>
 					<input type="radio" id="silver" name="favorite" value="Silver">
@@ -100,7 +100,7 @@
 					<input type="radio" id="gold" name="favorite" value="Gold">
 					<label for="gold">Gold</label>
 					
-					<p>Seleziona la data di prenotazione:</p>
+					<h4>Seleziona la data di prenotazione:</h4>
    		      	    <input type="date" id="dataEvento" name="dataEvento" required>
    		      	    
    		        	<input type="hidden" id="codprod" name="codprod" value="<%= var.getCodProdotto() %>">

@@ -6,6 +6,7 @@
 	return;
 }
 	ProdottoBean var = (ProdottoBean)request.getAttribute("modify");
+	request.setAttribute("modify", null);
 %>    
 <!DOCTYPE html>
 	<html>
@@ -19,7 +20,7 @@
 		<link rel="stylesheet" href="style/modify.css">
 	    <link rel="stylesheet" href="style/header.css">
 	    <link rel="stylesheet" href="style/footer.css">
-		<title>ABD Studio|Modifica Catalogo</title> 
+		<title>Sito TSW|Modifica Catalogo</title> 
 	
 	</head>
 	
@@ -27,7 +28,7 @@
 	
 		<jsp:include page="header.jsp" />
 		
-		<form class="modify_form" method="post" action="Modify.java" enctype="multipart/form-data">
+		<form class="modify_form" action="Modify" method="POST">
 		
 			<div class="div_modifica">
 			
@@ -35,7 +36,6 @@
 				
 				<input class="box" type="hidden" name="id" value="<%= var.getCodProdotto()%>">
 				<input class="box" type="hidden" name="action" value="update">
-				<% System.out.println(var.getCodProdotto()); %>
 				
 				<div class="modify">
 					<p class="p_mod">Nome prodotto</p>
@@ -43,8 +43,18 @@
 				</div>		
 				
 				<div class="modify">
-					<p class="p_mod">Prezzo unitario</p>
+					<p class="p_mod">Prezzo Base</p>
 					<input  class="box" type="number" name="Prezzo" value="<%= var.getPrezzo()%>">
+				</div>
+				
+				<div class="modify">
+					<p class="p_mod">Prezzo Silver</p>
+					<input  class="box" type="number" name="PrezzoS" value="<%= var.getPrezzoSilver()%>">
+				</div>
+				
+				<div class="modify">
+					<p class="p_mod">Prezzo Gold</p>
+					<input  class="box" type="number" name="PrezzoG" value="<%= var.getPrezzoGold()%>">
 				</div>
 				
 				<div class="modify">
@@ -52,16 +62,6 @@
 					<input class="box" type="text" name="Descrizione" value="<%= var.getDescrizione()%>">
 				</div>
 				
-				<div class="modify">
-					<p class="p_mod">Immagine</p>
-					<img src="<%= var.getImmagine()%>" alt="immagine">
-					<input class="box" type="file" name="Immagine" >	
-				</div>
-				
-				<div class="modify">
-				<p class="p_mod">Quantità</p>
-				<input  class="box" type="number" name="Quantità" value="<%= var.getQuantita()%>">
-				</div>
 				
 				<div class="modify">
 					<p class="p_mod">Eliminare?</p>

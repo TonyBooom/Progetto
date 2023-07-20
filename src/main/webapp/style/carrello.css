@@ -45,7 +45,20 @@ html, body {
     max-height:330px;
     gap:5px;
 }
-
+.acquista{
+	text-decoration: none;
+	border: 1px solid gray;
+	border-radius: 2em;
+	font-size: 1em;
+	color: black;
+	background-color: gray;
+	font-weight: normal;
+	text-align:center;
+	padding: 10px;
+    margin: 2px;
+    justify-content:space-around;
+    width:100%;
+}
 .prodottoCarrello > div {
   margin: 3%;
   text-align: center;

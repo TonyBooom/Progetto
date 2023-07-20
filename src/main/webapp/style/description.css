@@ -80,9 +80,18 @@
 }
 
 .container-bottone {
-	margin-top: 5rem;
-	text-align: center;
-	align-items: center;
+	text-decoration: none;
+	border: 1px solid gray;
+	border-radius: 2em;
+	font-size: 1em;
+	color: black;
+	background-color: gray;
+	font-weight: normal;
+	text-align:center;
+	padding: 10px;
+    margin: 2px;
+    justify-content:space-around;
+    width:100%;
 }
 
 a:not(.cons) {

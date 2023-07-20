@@ -196,7 +196,7 @@
 						
 							<input type="hidden" name="ordine" value="<%= bean.getIdOrdine()%>">
 							
-							<input type="submit" value="Invoice">
+							<input type="submit" class="Modifica2" value="Fattura" >
 						</form>
 					</td>
 					

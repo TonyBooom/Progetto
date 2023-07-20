@@ -22,13 +22,16 @@
 	<body>
 	
 		<jsp:include page="header.jsp"/>
+		
+		<div id="error_message" style="display: none; color: red;"></div>
+		
 
 	    <form id="loginForm" class="loginForm" method="post" action="Login">
 	        <h1 id="accedi">Accedi</h1>
 	        <div class="content">
 	        
 	            <div class="input-field">
-	                <input type="text" placeholder="Username" id="username" name="username">
+	                <input type="email" placeholder="Username" id="username" name="username">
 	            </div>
 	            
 	            <div class="input-field">
@@ -39,7 +42,7 @@
 	        
 	        <div class="action">
 	            <a href="Registrazione.jsp">Registrati</a>
-	            <button type="submit" id="loginButton">Login</button>
+	            <button type="submit" onclick ='validateForm()' id="loginButton">Login</button>
 	        </div>
 	    </form>
 	
@@ -48,6 +51,57 @@
 		
 		
 		
-		
+<script>
+		function validateForm(event) {
+	        event.preventDefault();
+
+	        var email = $('#username').val();
+	        var password = $('#password').val();
+	        var errorMessages = [];
+
+	        // Validazione dei campi della form
+	        if (email === "") {
+	            errorMessages.push("Il campo email è obbligatorio.");
+	        }
+
+	        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+	        if (!emailRegex.test(email)) {
+	            errorMessages.push("L'indirizzo email non è valido.");
+	        }
+
+	        if (password === "") {
+	            errorMessages.push("Il campo password è obbligatorio.");
+	        } else if (password.length < 4) {
+	            errorMessages.push("Il campo password deve contenere almeno 4 caratteri.");
+	        }
+
+	        // Mostra gli eventuali messaggi di errore
+	        if (errorMessages.length > 0) {
+	            var errorHtml = "";
+	            for (var i = 0; i < errorMessages.length; i++) {
+	                errorHtml += "<p>" + errorMessages[i] + "</p>";
+	            }
+	            $('#error_messages').html(errorHtml);
+	        } else {
+	            // Invio dei dati al server
+	            $.ajax({
+	                type: 'POST',
+	                url: 'Login',  // Inserisci l'URL del server che riceverà i dati
+	                data: {
+	                    email: email,
+	                    password: password
+	  
+	                },
+	                success: function (response) {
+	                    console.log(response);
+	     
+	                },
+	                error: function (xhr, status, error) {
+	                    console.log(error);
+	                }
+	            });
+	        }
+	    }
+</script>
 </body>
 </html>

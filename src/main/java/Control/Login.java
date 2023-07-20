@@ -56,17 +56,16 @@ public class Login extends HttpServlet {
 						request.getSession().setAttribute("Utente loggato" , utente );       //Per motivi di sicurezza
 						response.sendRedirect("./Catalog.jsp");
 					}
-					
-					
 				}
-				else {
-					response.getWriter().append("Password non corretta");
+					else {
+						response.sendRedirect("Login.jsp");
+
+					}
 				}
 			}
-			else {
-				response.getWriter().append("Utente non registrato");
-			}
-		} catch (SQLException e) {
+				
+			
+		 catch (SQLException e) {
 			e.printStackTrace();
 		}
 		

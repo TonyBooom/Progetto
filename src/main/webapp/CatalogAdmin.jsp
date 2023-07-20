@@ -38,7 +38,7 @@
 
 		<jsp:include page="header.jsp" />
 
-		<h1 class="titoloCatalogo">Catalogo Admin ABD Studio</h1>
+		<h1 class="titoloCatalogo">Catalogo Admin Sito TSW</h1>
 	
 		<div class="div_esterno">
 	
@@ -57,7 +57,16 @@
 				<a href="Catalogo?action=view&id=<%=var.getCodProdotto()%>">
 							<%=var.getNome()%>
 					</a>
-				<a href="Modify?action=mod&id=<%= var.getCodProdotto()%>">   <br> <input class ="pulsante" type="button" value="Modifica"> </a>
+					
+				<form action="Modify" method="POST">
+				
+				<input type="hidden" name="action" value="mod">
+				<input type="hidden" name="id" value="<%= var.getCodProdotto()%>">
+				
+				
+				<input class ="pulsante" type="submit" value="Modifica">
+				
+				</form>
 				
 			</div>
 					
