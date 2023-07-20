@@ -48,7 +48,7 @@ public class OrdineDAO {
 			preparedStatement.setInt(5, user.getCodPagamento().getIdPagamento());
 			preparedStatement.setString(6, user.getCodUtente().getEmail());
 			preparedStatement.setDouble(7, user.getPrezzoTotale());
-	
+			
 			preparedStatement.executeUpdate();
 			connection.commit(); //Salva le modifiche sul database
 			return CID;
@@ -167,7 +167,7 @@ public class OrdineDAO {
 		PreparedStatement preparedStatement = null;
 
 		String upsql = "UPDATE " + OrdineDAO.TABLE_NAME + 
-						" SET data_ordine = ?, stato_ordine = ?, cod_consegna = ?, cod_pagamento = ?, cod_utente = ?, prezzo_totale = ? " + 
+						" SET data_ordine = ?, stato_ordine = ?, cod_consegna = ?, cod_pagamento = ?, cod_utente = ?, prezzo_totale = ?, dataprenotazione = ?" + 
 						"WHERE id_ordine = ?";
 		try 
 		{

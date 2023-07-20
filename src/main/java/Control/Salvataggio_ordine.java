@@ -1,9 +1,11 @@
 package Control;
 
-import java.io.IOException; 
+import java.io.IOException;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -29,11 +31,12 @@ public class Salvataggio_ordine extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		OrdineDAO odao = new OrdineDAO();
 		OrdineBean obj = new OrdineBean();
 		long millis = System.currentTimeMillis();
 		java.sql.Date date = new java.sql.Date(millis);
+
 		
 		obj.setDataOrdine(date);
 		obj.setStatoOrdine("In lavorazione");
@@ -53,11 +56,15 @@ public class Salvataggio_ordine extends HttpServlet {
 			request.getSession().setAttribute("carrello", new Carrello());
 			
 			obj.setPrezzoTotale(Double.parseDouble(request.getParameter("pf")));
+						
 			
 			obj.setIdOrdine(odao.doSave(obj));
 			
+			
+			
 			ComposizioneDAO cmdao = new ComposizioneDAO();
 			cmdao.doSaveAll(obj);
+			
 			response.sendRedirect("Acquisto_completato.jsp");
 			
 		} catch (NumberFormatException | SQLException e) {
@@ -70,8 +77,8 @@ public class Salvataggio_ordine extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		doPost(request, response);
 	}
 
 }

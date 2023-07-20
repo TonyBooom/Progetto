@@ -37,7 +37,7 @@
 	    
 	    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-		<title>ABD Studio|Area utente</title>
+		<title>Sito TSW|Area utente</title>
 	</head>
 	
 	<body>
@@ -175,8 +175,8 @@
 			
 			<div class="tabella"> 
 			<table class="tab">
+			  <caption>Ordini</caption>
 				<tr> <!--  INTESTAZIONE TABELLA  -->
-					<th>ID ordine </th>
 					<th>Data ordine </th>
 					<th>Stato ordine</th>
 					<th>Nome utente </th>
@@ -186,7 +186,6 @@
 				</tr>
 			<%for(OrdineBean bean : arr){ %>
 				<tr> <!-- CONTENUTO TABELLA -->
-					<td> <%= bean.getIdOrdine() %></td>
 					<td> <%= bean.getDataOrdine() %></td>
 					<td> <%= bean.getStatoOrdine() %></td>
 					<td> <%= bean.getCodUtente().getNome()  %></td>
@@ -194,7 +193,9 @@
 					<td> <%= String.format("%.02f", bean.getPrezzoTotale()) %> &euro; </td>
 					<td>
 						<form action="Invoice" method="post">
+						
 							<input type="hidden" name="ordine" value="<%= bean.getIdOrdine()%>">
+							
 							<input type="submit" value="Invoice">
 						</form>
 					</td>

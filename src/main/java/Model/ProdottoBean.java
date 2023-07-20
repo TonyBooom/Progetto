@@ -1,13 +1,20 @@
 package Model;
 
+
+import Control.ProdottoCarrelloInfo;
+
 public class ProdottoBean {
 	
 	int codProdotto;
 	String nome;
 	float prezzo;
+    private ProdottoCarrelloInfo carrelloInfo;
+	float prezzoSilver;
+	float prezzoGold;
 	String descrizione;
 	ImmagineBean immagine;
 	int rimosso;
+	
 	CategoriaBean categoria;
 	int quantita;
 	double iva;
@@ -17,6 +24,25 @@ public class ProdottoBean {
 		super();
 	}
 	
+
+	public float getPrezzoSilver() {
+		return prezzoSilver;
+	}
+
+
+	public void setPrezzoSilver(float prezzoSilver) {
+		this.prezzoSilver = prezzoSilver;
+	}
+
+
+	public float getPrezzoGold() {
+		return prezzoGold;
+	}
+
+
+	public void setPrezzoGold(float prezzoGold) {
+		this.prezzoGold = prezzoGold;
+	}
 	
 	public double getIva() {
 		return iva;
@@ -74,4 +100,12 @@ public class ProdottoBean {
 		this.rimosso = rimosso;
 	}
 	
+	
+	public ProdottoCarrelloInfo getCarrelloInfo() {
+	        return carrelloInfo;
+	    }
+	
+	 public void setCarrelloInfo(ProdottoCarrelloInfo carrelloInfo) {
+	        this.carrelloInfo = carrelloInfo;
+	    }
 }

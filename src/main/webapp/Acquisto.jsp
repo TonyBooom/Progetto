@@ -2,6 +2,7 @@
     pageEncoding="utf-8" import="java.util.*,Model.*"%>
     
 <% 
+	
 	Map<ProdottoBean, ArrayList<Double>> obj = (Map<ProdottoBean, ArrayList<Double>>) request.getSession().getAttribute("carrello_view");
 	if(obj == null){
 		response.sendRedirect("./Carrello.jsp");
@@ -26,7 +27,7 @@
 	    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 
-		<title>ABD Studio|Checkout</title>
+		<title>Sito TSW|Checkout</title>
 	</head>
 	
 	<body>
@@ -45,8 +46,9 @@
 		            <ul class="list-group mb-3 sticky-top" style="position:sticky; top:20%"> 
 	    		
 		    			<% 
-						if(obj != null && !obj.isEmpty()){
-						double prezzoFinale = 0; 
+						if(obj != null || !obj.isEmpty()){
+						double prezzoFinale = 0;
+						
 						for(Map.Entry<ProdottoBean, ArrayList<Double>> entry : obj.entrySet()){
 							ProdottoBean prodotto = entry.getKey();
 						double prezzoTotale =(entry.getValue().get(0) * prodotto.getPrezzo());
@@ -71,8 +73,9 @@
 	            	</ul>
     			</div>
 			</div>
-		                <form action="Salvataggio_ordine" method="post"> 
-		                <input type="hidden" value="<%= prezzoFinale%>" name="pf">
+		                <form action="Salvataggio_ordine" method="POST">
+		    
+		    		    <input type="hidden" value="<%= prezzoFinale%>" name="pf">
 						<div class="metodi">
 						
 								

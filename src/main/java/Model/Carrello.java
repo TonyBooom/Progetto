@@ -1,37 +1,51 @@
 package Model;
 
-import java.util.HashMap; 
-import java.util.Map;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Carrello {
+    private List<CarrelloItem> items;
 
-	Map<Integer, Integer> cart = null;
+    public Carrello() {
+        items = new ArrayList<>();
+    }
 
-	public Carrello() {
-		super();
-		this.cart = new HashMap<>();
-	}
-	
-	
-	public void addToCart(Integer id, Integer qnt) {
-		
-		this.cart.put(id, qnt);
-	}
-	
-	public void updateCart(Integer id, Integer qnt) {
-		
-		if(qnt.intValue() == 0) {
-			
-			this.cart.remove(id);
-		}
-		else {
-			
-			this.cart.replace(id, qnt);
-		}
-	}
+    public List<CarrelloItem> getItems() {
+        return items;
+    }
 
+    public void addToCart(ProdottoBean prodotto, int quantita) {
+        for (CarrelloItem item : items) {
+            if (item.getProdotto().getCodProdotto() == prodotto.getCodProdotto()) {
+                item.setQuantita(item.getQuantita() + quantita);
+                return;
+            }
+        }
 
-	public Map<Integer, Integer> getCart() {
-		return cart;
-	}
+        // Se il prodotto non è ancora nel carrello, lo aggiungiamo
+        items.add(new CarrelloItem(prodotto, quantita));
+    }
+
+    public void removeFromCart(int codProdotto) {
+        items.removeIf(item -> item.getProdotto().getCodProdotto() == codProdotto);
+    }
+
+    public void updateCart(ProdottoBean prodotto, int quantita) {
+        for (CarrelloItem item : items) {
+            if (item.getProdotto().getCodProdotto() == prodotto.getCodProdotto()) {
+                item.setQuantita(quantita);
+                return;
+            }
+        }
+    }
+    
+    public int getQuantityById(int productId) {
+        for (CarrelloItem item : items) {
+            if (item.getProdotto().getCodProdotto() == productId) {
+                return item.getQuantita();
+            }
+        }
+        return 0; // Restituisce 0 se il prodotto non è presente nel carrello
+    }
 }

@@ -6,7 +6,6 @@
 	return;
 }
 	ProdottoBean var = (ProdottoBean)request.getAttribute("modify");
-	request.setAttribute("modify", null);
 %>    
 <!DOCTYPE html>
 	<html>
@@ -28,7 +27,7 @@
 	
 		<jsp:include page="header.jsp" />
 		
-		<form class="modify_form" method="post" action="Modify" enctype="multipart/form-data">
+		<form class="modify_form" method="post" action="Modify.java" enctype="multipart/form-data">
 		
 			<div class="div_modifica">
 			
@@ -36,6 +35,7 @@
 				
 				<input class="box" type="hidden" name="id" value="<%= var.getCodProdotto()%>">
 				<input class="box" type="hidden" name="action" value="update">
+				<% System.out.println(var.getCodProdotto()); %>
 				
 				<div class="modify">
 					<p class="p_mod">Nome prodotto</p>

@@ -1,5 +1,6 @@
 package Model;
 
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,8 +22,8 @@ public class ProdottoDAO
 		
 
 		String insertSQL = "INSERT INTO " + ProdottoDAO.TABLE_NAME
-					+ " (nome, prezzo, descrizione, quantita, codi_categoria, iva)"
-					+ " VALUES (?, ?, ?, ?, ?, ?)";
+					+ " (nome, prezzo, descrizione, quantita, codi_categoria, iva, prodottosilver, prodottogold)"
+					+ " VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
 
 		try
 		{
@@ -35,7 +36,11 @@ public class ProdottoDAO
 			preparedStatement.setString(3, user.getDescrizione());
 			preparedStatement.setInt(4, user.getQuantita());
 			preparedStatement.setInt(5, user.getCategoria().getCodcategoria());
-			preparedStatement.setDouble(6, user.getIva());
+			preparedStatement.setDouble(6, user.getIva());	
+			preparedStatement.setFloat(7, user.getPrezzoSilver());
+			preparedStatement.setFloat(8, user.getPrezzoGold());
+
+
 	
 			preparedStatement.executeUpdate();
 
@@ -82,6 +87,8 @@ public class ProdottoDAO
 				bean.setRimosso(rs.getInt("rimosso"));
 				bean.setQuantita(rs.getInt("quantita"));
 				bean.setIva(rs.getDouble("iva"));
+				bean.setPrezzoSilver(rs.getFloat("prodottosilver"));
+				bean.setPrezzoGold(rs.getFloat("prodottogold"));
 				
 				ImmagineDAO pdao = new ImmagineDAO();
 				bean.setImmagine(pdao.doRetrieveByKey(rs.getString("cod_immagine")));
@@ -180,6 +187,9 @@ public class ProdottoDAO
 				bean.setIva(rs.getDouble("iva"));
 				bean.setRimosso(rs.getInt("rimosso"));
 				
+				bean.setPrezzoSilver(rs.getFloat("prodottosilver"));
+				bean.setPrezzoGold(rs.getFloat("prodottogold"));
+				
 				product.add(bean);
 			}
 
@@ -235,6 +245,10 @@ public class ProdottoDAO
 				bean.setQuantita(rs.getInt("quantita"));
 				bean.setRimosso(rs.getInt("rimosso"));
 				
+				bean.setPrezzoSilver(rs.getFloat("prodottosilver"));
+				bean.setPrezzoGold(rs.getFloat("prodottogold"));
+
+				
 				product.add(bean);
 			}
 
@@ -261,7 +275,7 @@ public class ProdottoDAO
 		PreparedStatement preparedStatement = null;
 
 		String upsql = "UPDATE " + ProdottoDAO.TABLE_NAME + 
-						" SET nome = ?, prezzo = ?, descrizione = ?, cod_immagine = ?, rimosso = ?, quantita = ?, codi_categoria = ?, iva = ?  " + 
+						" SET nome = ?, prezzo = ?, descrizione = ?, cod_immagine = ?, rimosso = ?, quantita = ?, codi_categoria = ?, iva = ?, prodottosilver = ?, prodottogold = ? " + 
 						"WHERE (cod_prodotto = ?) ";
 		try 
 		{
@@ -277,6 +291,12 @@ public class ProdottoDAO
 			preparedStatement.setInt(7, product.getCategoria().getCodcategoria());
 			preparedStatement.setDouble(8, product.getIva());
 			preparedStatement.setInt(9, product.getCodProdotto());
+			preparedStatement.setFloat(10, product.getPrezzoSilver());
+			preparedStatement.setFloat(11, product.getPrezzoGold());
+
+			
+
+
 			
 			preparedStatement.executeUpdate();
 			connection.commit();
@@ -297,4 +317,4 @@ public class ProdottoDAO
 		
 	}
 	
-	}
+}

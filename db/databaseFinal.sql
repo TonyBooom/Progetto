@@ -1,10 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `tsw` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci */ /*!80016 DEFAULT ENCRYPTION='N' */;
-USE `tsw`;
--- MySQL dump 10.13  Distrib 8.0.19, for Win64 (x86_64)
---
--- Host: localhost    Database: squishy_muffins
--- ------------------------------------------------------
--- Server version	8.0.19
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -27,6 +20,7 @@ DROP TABLE IF EXISTS `categoria`;
 CREATE TABLE `categoria` (
   `cod_categoria` int NOT NULL,
   `nome` varchar(45) NOT NULL,
+  `cod_immagine` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`cod_categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -34,6 +28,12 @@ CREATE TABLE `categoria` (
 --
 -- Dumping data for table `categoria`
 --
+
+LOCK TABLES `categoria` WRITE;
+/*!40000 ALTER TABLE `categoria` DISABLE KEYS */;
+INSERT INTO `categoria` VALUES (1,'matrimonio',NULL),(2,'battesimo/babysh',NULL),(3,'corse',NULL);
+/*!40000 ALTER TABLE `categoria` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `composizione`
@@ -48,6 +48,7 @@ CREATE TABLE `composizione` (
   `quantita` double NOT NULL,
   `iva` double NOT NULL DEFAULT '0',
   `prezzo` double(6,2) NOT NULL DEFAULT '0.00',
+  `dataprenotazione` date DEFAULT NULL,
   PRIMARY KEY (`codi_prodotto`,`num_ordine`),
   KEY `codi_prodotto_idx` (`codi_prodotto`),
   KEY `num_ordine_idx` (`num_ordine`),
@@ -59,6 +60,12 @@ CREATE TABLE `composizione` (
 --
 -- Dumping data for table `composizione`
 --
+
+LOCK TABLES `composizione` WRITE;
+/*!40000 ALTER TABLE `composizione` DISABLE KEYS */;
+INSERT INTO `composizione` VALUES (2,0,1,22,799.99,NULL),(3,1,1,22,1999.99,NULL);
+/*!40000 ALTER TABLE `composizione` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `consegna`
@@ -84,6 +91,12 @@ CREATE TABLE `consegna` (
 -- Dumping data for table `consegna`
 --
 
+LOCK TABLES `consegna` WRITE;
+/*!40000 ALTER TABLE `consegna` DISABLE KEYS */;
+INSERT INTO `consegna` VALUES (0,'Tua',31231,123123,'TOP','a@a');
+/*!40000 ALTER TABLE `consegna` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `immagine`
 --
@@ -101,6 +114,12 @@ CREATE TABLE `immagine` (
 --
 -- Dumping data for table `immagine`
 --
+
+LOCK TABLES `immagine` WRITE;
+/*!40000 ALTER TABLE `immagine` DISABLE KEYS */;
+INSERT INTO `immagine` VALUES ('1','./images/1.jpg'),('10','./images/10.jpg'),('2','./images/2.jpg'),('3','./images/3.jpg'),('4','./images/4.jpg'),('5','./images/5.jpg'),('6','./images/6.jpg'),('7','./images/7.jpg'),('8','./images/8.jpg'),('9','./images/9.jpg');
+/*!40000 ALTER TABLE `immagine` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `metodo_pagamento`
@@ -127,6 +146,12 @@ CREATE TABLE `metodo_pagamento` (
 -- Dumping data for table `metodo_pagamento`
 --
 
+LOCK TABLES `metodo_pagamento` WRITE;
+/*!40000 ALTER TABLE `metodo_pagamento` DISABLE KEYS */;
+INSERT INTO `metodo_pagamento` VALUES (0,'Tony',123,12,'123123123123',2023,'a@a');
+/*!40000 ALTER TABLE `metodo_pagamento` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `ordine`
 --
@@ -142,6 +167,8 @@ CREATE TABLE `ordine` (
   `cod_pagamento` int NOT NULL,
   `cod_utente` varchar(50) NOT NULL,
   `prezzo_totale` double(6,2) NOT NULL DEFAULT '0.00',
+  `pacchetto` double DEFAULT NULL,
+  `dataprenotazione` date DEFAULT NULL,
   PRIMARY KEY (`id_ordine`),
   KEY `consegna_idx` (`cod_consegna`),
   KEY `cod_pagamento_idx` (`cod_pagamento`),
@@ -155,6 +182,12 @@ CREATE TABLE `ordine` (
 --
 -- Dumping data for table `ordine`
 --
+
+LOCK TABLES `ordine` WRITE;
+/*!40000 ALTER TABLE `ordine` DISABLE KEYS */;
+INSERT INTO `ordine` VALUES (0,'2023-07-16','In lavorazione',0,0,'a@a',799.99,NULL,NULL),(1,'2023-07-16','In lavorazione',0,0,'a@a',1999.99,NULL,NULL);
+/*!40000 ALTER TABLE `ordine` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `prodotto`
@@ -185,6 +218,12 @@ CREATE TABLE `prodotto` (
 -- Dumping data for table `prodotto`
 --
 
+LOCK TABLES `prodotto` WRITE;
+/*!40000 ALTER TABLE `prodotto` DISABLE KEYS */;
+INSERT INTO `prodotto` VALUES (1,'Corse',999.99,'Adrenalina allo stato puro, scatta il momento delle tue curve...',1,'10',1,0,22),(2,'Battesimo',799.99,'La tua nuova nascita, decidi il meglio per i tuoi nascituri',1,'5',1,0,22),(3,'Matrimonio',1999.99,'Acquista il ricordo unico.',1,'3',1,0,22);
+/*!40000 ALTER TABLE `prodotto` ENABLE KEYS */;
+UNLOCK TABLES;
+
 --
 -- Table structure for table `utente`
 --
@@ -207,6 +246,11 @@ CREATE TABLE `utente` (
 -- Dumping data for table `utente`
 --
 
+LOCK TABLES `utente` WRITE;
+/*!40000 ALTER TABLE `utente` DISABLE KEYS */;
+INSERT INTO `utente` VALUES ('a','a',0,'a','a','a'),('a@a','a',0,'a','a','a'),('aaaaa@aaaa.a','a',0,'a','a','a'),('adas@asda.a','aaaa',0,'aaaa','aaaa','asdasd2e21c3r1c2'),('adas@asda.ada','aaaa',0,'aaaa','aaaa','dwedcrcxd35r324d'),('admin@admin.com','admin',1,'Antonio','Botta','xxxx'),('admin@admin.it','admin',0,'admin','admin','admin'),('adsas@asdas.asd','asdf',0,'asdf','asdf','d21e23234123rs12'),('alla@alla','a',0,'Simone','Botta','asdasd23ee23'),('anna@anna.a','anna',0,'anna','anna','1234567890123456'),('anna@anna.com','anna',0,'Anna','Luce','1234567890123456'),('anna@anna.it','a',0,'Anna','Pio','1234567890123456'),('antonio-9708@outlook.it','a',0,'Simone','Botta','asdasd23ee23'),('asd@asd.com','aaaa',0,'asdf','asdf','1234567890123456'),('asd@asd.it','asdf',0,'asdf','asdf','1234567890123456'),('asdkl@kajsd.ka','aaaa',0,'aaaa','aaaa','aaaesfqwui324ct2'),('c@c.c','c',0,'c','c','c'),('cas@casa','casa',0,'casa','casa','234124124'),('casa@hotmail.it','a',0,'Simone','Botta','asdasd23ee23'),('ccc@ccc.c','a',0,'a','a','a'),('ciao@ciao','ciao',0,'ciao','ciao','c90213'),('eeee@eee.a','aaaa',0,'eeee','eeee','r3qwiroèc34qfr23'),('eeee@eee.b','eeee',0,'eeee','eeee','r3qwiroèc34qfr23'),('eeee@eee.e','eeee',0,'eeee','eeee','r3qwiroèc34qfr23'),('genny.schisano@gmail.com','Genny1990',0,'Gennaro','Schisano','SCHGNR80A01B963Z'),('gerardo.napolitano@gmail.com','Gerardo2000',1,'Gerardo','Napolitano','NPLGRD00R04A509E'),('gg.winno@gmail.com','aaaaaaaa',0,'Antonio','Pratico','ANTPRT098123ERG3'),('io@io.it','anna',0,'anna','anna','1234567890123456'),('jjj@jj.j','jjjj',0,'jjjj','jjjj','jj21jue1o2je12r1'),('k@k.k','k',0,'k','k','k'),('kakka@kakka.kakka','kakka',0,'kakka','kakka','1234567890123456'),('kiki@kiki.kiki','kiki',0,'kiki','kiki','i23jrà34jtò2346à'),('kiki@kiki.kikia','aaaa',0,'kiki','kiki','i23jrà34jtò2346à'),('kkkk@kkk.kk','kkkk',0,'kkkk','kkkk','k'),('kpkp@kpkp.k','kkkk',0,'kkkk','kkkk','kkkdokqwedok934i'),('lalla@lalla.lall','lalla',0,'lalla','lalla','2412341251253127'),('lalla@lalla.lalla','lalla',0,'lalla','lalla','2412341251253125'),('lalla@lalla.lalls','lalla',0,'lalla','lalla','2412341251253127'),('ldldas@lasd.kfas','uuuu',0,'uuuu','uuuu','89rue230r9u3jpof'),('lkdas@xn--ldks-oqa.l','kkkk',0,'kkkk','kkkk','keo32i234f5235f2'),('lll@ll.l','pppp',0,'pppp','pppp','ppp1234213521351'),('loca@loca','loca',0,'loca','loca','234124124124141'),('lolp@lpo.l','llll',0,'llll','llll','dijweldkj3qòweor'),('marisa.lasorda@gmail.com','Marisa1994',1,'Marisa','La Sorda','LSRMRS94T61B963S'),('mary.santillo@gmail.com','Mary1975',0,'Maria','Santillo','SNTMRA75L43F839O'),('mmmm@mmmm.m','mmmm',0,'mmmm','mmmm','3k12nji12jj12ri1'),('nomis97@gmail.it','a',0,'Simone','Botta','asdasd23ee23'),('ooo@ooo.o','oooo',0,'oooo','oooo','o341234213423434'),('peppe.alifano@gmail.com','Peppe2002',0,'Giuseppe','Alifano','LFNGPP02T14G482E'),('peppe@peppe.peppe','peppe',0,'peppe','peppe','1234567890123456'),('popo@popo.popo','popo',0,'popo','popo','203iko31j4cftpò3'),('prova@prova.it','123456',0,'prova','prova','1111111111111111'),('prova@prova.prova','prova',0,'prova','prova','1234567890123');
+/*!40000 ALTER TABLE `utente` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
 -- Table structure for table `utilizzo`
@@ -243,4 +287,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2022-09-08 13:07:07
+-- Dump completed on 2023-07-18 22:02:24

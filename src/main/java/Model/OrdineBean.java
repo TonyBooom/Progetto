@@ -1,6 +1,6 @@
 package Model;
 
-import java.sql.Date;
+import java.sql.Date; 
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -73,6 +73,7 @@ public class OrdineBean {
 	public void setStatoOrdine(String statoOrdine) {
 		this.statoOrdine = statoOrdine;
 	}
-	
+
+
 	
 }

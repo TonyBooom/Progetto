@@ -17,7 +17,7 @@
 		<jsp:include page="header.jsp"/>
 		
 			<div class="grazie">
-				<span> Grazie per aver acquistato dal Sito TSW!</span>
+				<span> Grazie per aver acquistato da ABD Studio!</span>
 			</div>
 
 			<div class="acquisto">

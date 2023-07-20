@@ -1,11 +1,12 @@
 package Control;
 
-import Model.*;   
+
+import Model.*;    
 
 import java.io.File;
 import java.io.IOException;
 import java.io.OutputStream;
-
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.ServletException;
@@ -19,7 +20,7 @@ import org.apache.pdfbox.pdmodel.common.PDRectangle;
 import org.apache.pdfbox.pdmodel.PDPageContentStream;
 import org.apache.pdfbox.pdmodel.font.PDType0Font;
 import org.apache.pdfbox.pdmodel.graphics.image.PDImageXObject;
-
+ 
 @WebServlet("/Invoice")
 public class Invoice extends HttpServlet {
     private static final long serialVersionUID = 1L;
@@ -31,9 +32,11 @@ public class Invoice extends HttpServlet {
 
         OrdineDAO dao = new OrdineDAO();
         OrdineBean bean = new OrdineBean();
+        ProdottoBean pbean = new ProdottoBean();
 
         try {
             bean = dao.doRetrieveByKey(Integer.parseInt(request.getParameter("ordine")));
+            pbean = new ProdottoDAO().doRetrieveByKey(bean.getIdOrdine());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -42,10 +45,10 @@ public class Invoice extends HttpServlet {
         PDDocument document = new PDDocument();
         PDPage page = new PDPage(PDRectangle.A4);
         document.addPage(page);
-        PDType0Font font = PDType0Font.load(document, new File("C:\\Users\\david\\Documents\\GitHub\\Progetto\\Helvetica.ttf"));
+        PDType0Font font = PDType0Font.load(document, new File("C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\TSW_2023\\Helvetica.ttf"));
 
         // Caricamento del logo
-        PDImageXObject logoImage = PDImageXObject.createFromFile("C:\\Users\\david\\Documents\\GitHub\\Progetto\\logo.jpg", document);
+        PDImageXObject logoImage = PDImageXObject.createFromFile("C:\\Program Files\\Apache Software Foundation\\Tomcat 9.0\\webapps\\TSW_2023\\logo.jpg", document);
 
         // Creazione del contenuto della fattura
         PDPageContentStream contentStream = new PDPageContentStream(document, page);
@@ -68,7 +71,7 @@ public class Invoice extends HttpServlet {
 
         // Aggiunta del logo
         float logoWidth = 100;
-        float logoHeight = 100;
+        float logoHeight = 50;
         contentStream.drawImage(logoImage, 50, 650, logoWidth, logoHeight);
        
         
@@ -81,7 +84,7 @@ public class Invoice extends HttpServlet {
 
         contentStream.beginText();
         contentStream.newLineAtOffset(page.getMediaBox().getWidth() - 250, 685);
-        contentStream.showText("Via Piazza Largo CAP 84084 PROV SA");
+        contentStream.showText("Via Piazza Largo CAP XXXXX PROV XX");
         contentStream.endText();
         
         // Aggiunta dei dati del cliente in fondo a sinistra
@@ -109,7 +112,16 @@ public class Invoice extends HttpServlet {
         contentStream.showText("Data generazione Fattura: " + currentDate);
         contentStream.endText();
 
-        drawTable(contentStream, yPosition, tableWidth, tableHeight, rowHeight, cellMargin, columnWidths, font, bean);
+        try {
+            drawTable(contentStream, yPosition, tableWidth, tableHeight, rowHeight, cellMargin, columnWidths, font, bean, pbean);
+        } catch (IOException | SQLException e) {
+            // Gestione dell'eccezione SQLException
+            e.printStackTrace();
+            // Puoi gestire l'errore a tuo piacimento, ad esempio, inviando un messaggio di errore alla pagina JSP
+            request.setAttribute("errorMessage", "Si è verificato un errore durante la generazione della fattura.");
+            request.getRequestDispatcher("/path_della_tua_pagina.jsp").forward(request, response);
+            return;
+        }
 
         contentStream.close();
 
@@ -131,8 +143,8 @@ public class Invoice extends HttpServlet {
     }
 
     private void drawTable(PDPageContentStream contentStream, float y, float tableWidth, float tableHeight,
-            float rowHeight, float cellMargin, float[] columnWidths, PDType0Font font, OrdineBean bean)
-            throws IOException {
+            float rowHeight, float cellMargin, float[] columnWidths, PDType0Font font, OrdineBean bean, ProdottoBean pbean)
+            throws IOException, SQLException {
         float margin = 50;
 
         // Disegna le righe e le colonne della tabella
@@ -191,12 +203,12 @@ public class Invoice extends HttpServlet {
    
             contentStream.beginText();
             contentStream.newLineAtOffset(textX + columnWidths[0] + columnWidths[1], textY);
-            contentStream.showText("€" + String.valueOf(bean.getComposizione().get(p).get(2).floatValue()));
+            System.out.println(p.getPrezzo());
+            contentStream.showText("€" + String.valueOf(bean.getPrezzoTotale()));
             contentStream.endText();
             
             contentStream.beginText();
             contentStream.newLineAtOffset(textX + columnWidths[0], textY);
-            contentStream.showText("Inserire datapren");
             contentStream.endText();
 
             
