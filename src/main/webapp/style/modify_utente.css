@@ -25,13 +25,6 @@ a:hover{
 	text-decoration:none;
 }
 
-.Modifica:hover {
-	color:black;
-	background-color:lightblue;
-	transition:0.3s;
-	cursor: pointer;
-	border: lightblue;
-}
 
 .campi{
 	border-radius:10px;
