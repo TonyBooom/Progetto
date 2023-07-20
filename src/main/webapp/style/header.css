@@ -1,18 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
 
-html, body {
-    font-family: "Montserrat", sans-serif;
-    background-color: gray;
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: gray;
 }
 
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
 
 .logo {
-    height: 50px;
+	float:left;
+    height: 40px;
     border-radius: 50px;
 }
 
@@ -21,74 +18,63 @@ html, body {
     transition: .3s;
 }
 
-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 1.1rem 5rem;
-    background: lightgray;
-}
 
 
 .top {
-    display: flex;
-    flex-direction: row;
+    overflow: hidden;
+  	background-color: lightgray;
 }
 
-.element {
-    list-style-type: none;
-    margin-left: 3rem;
+.top a {
+
+   	float: right;
+  	display: block;
+ 	color: black;
+  	text-align: center;
+  	padding: 14px 16px;
+  	text-decoration: none;
+  	font-size: 17px;
 }
 
-.element > a {
-    text-decoration: none;
-    color: black;
-    font-size: 0.9rem;
-    font-weight: 500;
+
+
+.top a:hover {
+  background-color: gray;
+  color: black;
 }
 
-.element::after {
-    content: '';
-    width: 0rem;
-    height: 0.15rem;
-    background-color: black;
-    display: block;
-    border-radius: 0.2rem;
-    margin: 0.2rem auto 0 auto;
-    transition: all 0.3s ease-in-out;
+.topnav a.active {
+  background-color: lightgray;
+  color: black;
 }
 
-.element > a:hover{
-    color:black;
+
+.top .icon {
+  display: none;
 }
 
-.element:hover::after {
-    width: 2rem;
-}
 
 /* Responsive Styles */
 
-@media screen and (max-width: 768px) {
-    header {
-        padding: 1.1rem 2rem;
-    }
-
-    .top {
-    	padding-left:5px;
-        flex-wrap: wrap;
-    }
-
-    .element {
-        margin: 10px;
-    }
+@media screen and (max-width: 600px) {
+  .top a:not(:first-child) {display: none;}
+  .top a.icon {
+    float: right;
+    display: block;
+  }
 }
 
-@media screen and (max-width: 480px) {
-    header {
-        padding: 1.1rem 1rem;
-    }
 
-    .logo {
-        height: 30px;
-    }
+@media screen and (max-width: 600px) {
+  .top.responsive {position: relative;}
+  .top.responsive .icon {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .top.responsive a {
+    float: none;
+    display: block;
+    text-align: center;
+  }
 }

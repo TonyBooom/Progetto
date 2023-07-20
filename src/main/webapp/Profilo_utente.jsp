@@ -1,15 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.*,Model.*"%>
     
-    <%User obj = (User)request.getSession().getAttribute("Utente loggato");
-    	if(obj == null){%>
+       
+    <%
+    
+    User obj = (User)request.getSession().getAttribute("Utente loggato");
+    
+        if(obj==null){%>
     		
     		<jsp:forward page="Login.jsp"/>
     	<%}
     	if (obj.isAdmin()){ %>
     		<jsp:forward page="profilo_admin.jsp" />
     		
-    	<% }  %>
+    	<%  }  %>
     
     	<% 
     	ArrayList<OrdineBean> arr = (ArrayList<OrdineBean>) request.getAttribute("ordini");	

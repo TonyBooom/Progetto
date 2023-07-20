@@ -48,13 +48,15 @@ public class Login extends HttpServlet {
 
 					if(isAdmin) {
 						request.getSession().setAttribute("secure", "Admin");
+						request.getSession().setAttribute("sessionToken", "Admin");
 						request.getSession().setAttribute("Utente loggato" , utente );       //Per motivi di sicurezza 
 						response.sendRedirect("./CatalogAdmin.jsp");
 					}
 					else {
 						request.getSession().setAttribute("secure", "Utente");
+						request.getSession().setAttribute("sessionToken", "Utente");
 						request.getSession().setAttribute("Utente loggato" , utente );       //Per motivi di sicurezza
-						response.sendRedirect("./Catalog.jsp");
+						response.sendRedirect("./Profilo_utente.jsp");
 					}
 				}
 					else {

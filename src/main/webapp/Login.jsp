@@ -1,5 +1,6 @@
-<%-- <%@page import="Model.UserBean" %>
-<%@ page errorPage="ErrorPage.jsp" %>  --%>
+<% String registrationMessage = (String) session.getAttribute("registrationMessage"); %>
+
+
 
 <!DOCTYPE html>
 <html lang="it">
@@ -16,17 +17,17 @@
 	    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
 	    <script src="https://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
 	    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-	    <title>ABD Studio|Login</title>
+	    <title>Sito TSW|Login</title>
 	</head>
 
 	<body>
 	
 		<jsp:include page="header.jsp"/>
 		
-		<div id="error_message" style="display: none; color: red;"></div>
 		
+		<div id="success_message" style="display: none; color: green;"></div>
 
-	    <form id="loginForm" class="loginForm" method="post" action="Login">
+	    <form id="loginForm" class="loginForm" method="POST" action="Login">
 	        <h1 id="accedi">Accedi</h1>
 	        <div class="content">
 	        
@@ -42,66 +43,66 @@
 	        
 	        <div class="action">
 	            <a href="Registrazione.jsp">Registrati</a>
-	            <button type="submit" onclick ='validateForm()' id="loginButton">Login</button>
+	            <button type="submit"  onclick="validateLoginForm()" id="loginButton">Login</button>
 	        </div>
+	       
 	    </form>
+	    
 	
 		<jsp:include page="footer.jsp"/>
 		
-		
-		
-		
 <script>
-		function validateForm(event) {
-	        event.preventDefault();
+  function validateLoginForm() {
+    event.preventDefault();
 
-	        var email = $('#username').val();
-	        var password = $('#password').val();
-	        var errorMessages = [];
+    var email = $('#username').val();
+    var password = $('#password').val();
 
-	        // Validazione dei campi della form
-	        if (email === "") {
-	            errorMessages.push("Il campo email è obbligatorio.");
-	        }
+    var errorMessages = [];
 
-	        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	        if (!emailRegex.test(email)) {
-	            errorMessages.push("L'indirizzo email non è valido.");
-	        }
+    // Validazione dei campi della form
+    if (email.trim() === "") {
+        errorMessages.push("Il campo email è obbligatorio.");
+    } else {
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(email)) {
+            errorMessages.push("L'indirizzo email non è valido.");
+        }
+    }
 
-	        if (password === "") {
-	            errorMessages.push("Il campo password è obbligatorio.");
-	        } else if (password.length < 4) {
-	            errorMessages.push("Il campo password deve contenere almeno 4 caratteri.");
-	        }
-
-	        // Mostra gli eventuali messaggi di errore
-	        if (errorMessages.length > 0) {
-	            var errorHtml = "";
-	            for (var i = 0; i < errorMessages.length; i++) {
-	                errorHtml += "<p>" + errorMessages[i] + "</p>";
-	            }
-	            $('#error_messages').html(errorHtml);
-	        } else {
-	            // Invio dei dati al server
-	            $.ajax({
-	                type: 'POST',
-	                url: 'Login',  // Inserisci l'URL del server che riceverà i dati
-	                data: {
-	                    email: email,
-	                    password: password
-	  
-	                },
-	                success: function (response) {
-	                    console.log(response);
-	     
-	                },
-	                error: function (xhr, status, error) {
-	                    console.log(error);
-	                }
-	            });
-	        }
-	    }
+    if (password.trim() === "") {
+        errorMessages.push("Il campo password è obbligatorio.");
+    } else if (password.length < 4) {
+        errorMessages.push("Il campo password deve contenere almeno 4 caratteri.");
+    }
+    
+    var errorHtml = "";
+    if (errorMessages.length > 0) {
+        for (var i = 0; i < errorMessages.length; i++) {
+            errorHtml += "<p>" + errorMessages[i] + "</p>";
+        }
+        $('#error_message').html(errorHtml).css('display', 'block');
+    } else {
+        $('#error_message').css('display', 'none');
+        
+        $.ajax({
+            type: "POST",
+            url: "Login",
+            data: {
+                username: email,
+                password: password,
+            },
+            success: function (response) {
+                console.log(response);
+                window.location.href = "Catalog.jsp";
+            },
+            error: function (xhr, status, error) {
+                console.log(error);
+            },
+        });
+    }
+  }
 </script>
+
 </body>
 </html>
